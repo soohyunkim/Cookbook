@@ -1,0 +1,77 @@
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+div.cookbook-title{
+  margin-top: 60px;
+}
+
+div.cookbook-tab-container{
+  z-index: 10;
+  background-color: #ffffff;
+  padding: 0 !important;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  border:1px solid #ffffff;
+  margin-left: 50px;
+  margin-top: 50px;
+  background-clip: padding-box;
+}
+
+div.cookbook-tab-menu{
+  padding-top: 0px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+div.cookbook-tab-menu div.list-group{
+  margin-bottom: 50px;
+}
+div.cookbook-tab-menu div.list-group>a .glyphicon,
+div.cookbook-tab-menu div.list-group>a .fa {
+  color: #ED6347;
+}
+div.cookbook-tab-menu div.list-group>a:first-child{
+  border-top-right-radius: 0;
+  -moz-border-top-right-radius: 0;
+}
+div.cookbook-tab-menu div.list-group>a:last-child{
+  border-bottom-right-radius: 0;
+  -moz-border-bottom-right-radius: 0;
+}
+div.cookbook-tab-menu div.list-group>a.active,
+div.cookbook-tab-menu div.list-group>a.active .glyphicon,
+div.cookbook-tab-menu div.list-group>a.active .fa{
+  background-color: #ED6347;
+  background-image: #ED6347;
+  color: #ffffff;
+}
+
+div.cookbook-tab-menu div.list-group>a.active, 
+div.cookbook-tab-menu div.list-group>a.active:hover, 
+div.cookbook-tab-menu div.list-group>a.active:focus {
+  border-color: #ED6347;
+}
+
+div.cookbook-tab-menu div.list-group>a.active:after{
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-top: -13px;
+  border-left: 0;
+  border-bottom: 13px solid transparent;
+  border-top: 13px solid transparent;
+  border-left: 10px solid #ED6347;
+}
+
+div.cookbook-tab-content{
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+div.cookbook-tab div.cookbook-tab-content:not(.active){
+  display: none;
+}
