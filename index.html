@@ -48,7 +48,73 @@
         </div>
         <!-- create -->
         <div class="cookbook-tab-content">
-          Insert creation form
+          <h3 class="align-left">Create a New Recipe</h3>
+          <h6 class="align-left">Upload a new recipe to the database to share it with other users.</h6>
+
+          <form id="cookbook-create-form">
+
+            <!-- Recipe Name -->
+            <div class="cookbook-create-section">
+              <label>Recipe Name:</label>
+              <input type="text" id="title" name="title">
+            </div>
+
+            <!-- Cuisine -->
+            <div class="cookbook-create-section">
+              <label>Cuisine:</label>
+              <input type="text" id="cuisine" name="cuisine">
+            </div>
+            
+            <!-- Difficulty -->
+            <div class="cookbook-create-section">
+              <label>Difficulty:</label>
+              <select>
+                <option value="1">1 (Very Easy)</option>
+                <option value="2">2 (Easy)</option>
+                <option value="3">3 (Moderate)</option>
+                <option value="4">4 (Hard)</option>
+                <option value="5">5 (Very Hard)</option>
+              </select>
+            </div>
+            
+            <!-- Cooking Time -->
+            <div class="cookbook-create-section">
+              <label>Cooking Time (in minutes):</label>
+              <input type="text" id="time" name="time">
+            </div>
+
+            <!-- Ingredients -->
+            <div class="cookbook-create-section">
+              <label>Ingredients:</label>
+              <div class="cookbook-create-section-ingredient">
+                <input type="text" id="ingredient_qty-1" name="ingredient_qty-1" placeholder="Quantity">
+                <input type="text" id="ingredient_desc-1" name="ingredient_desc-1" placeholder="Ingredient">
+              </div>
+              <button>Add Ingredient</button>
+            </div>
+
+            <!-- Steps -->
+            <div class="cookbook-create-section">
+              <label>Steps:</label>
+              <div class="cookbook-create-section-step">
+                <label>Step 1:</label>
+                <input type="text" id="cuisine" name="cuisine">
+              </div>
+              <button>Add Step</button>
+            </div>
+
+            <!-- Tags -->
+            <div class="cookbook-create-section">
+              <label>Tags:</label>
+              <button>Add Tag</button>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="cookbook-create-section">
+              <button type="submit">Upload Recipe</button>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>

@@ -72,8 +72,27 @@ div.cookbook-tab-content{
   padding-left: 20px;
   padding-top: 10px;
   height: 60vh;
+  overflow-y: scroll;
 }
 
 div.cookbook-tab div.cookbook-tab-content:not(.active){
   display: none;
+}
+
+/* Create Section and Form */
+div.cookbook-create-section {
+  margin: 8px 0;
+}
+
+div.cookbook-create-section button {
+  color: #ffffff;
+  border-color: #ED6347;
+  background-color: #ED6347;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+/* temporary align-left hack */
+.align-left {
+  text-align: left;
 }
