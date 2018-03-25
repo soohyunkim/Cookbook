@@ -120,7 +120,7 @@ div.cookbook-create-section button:focus {
   border-width: 0;
 }
 
-div.cookbook-create-title input {
+input#cookbook-create-title {
   width: 50%;
 }
 

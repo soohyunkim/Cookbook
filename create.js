@@ -2,6 +2,9 @@ var ingredientsDiv;
 var stepsDiv;
 var tagsDiv;
 
+var titleInput;
+var firstStep;
+
 var stepNum = 1;
 
 var tag = "<input type'text' class='tag' name='tag'>";
@@ -12,6 +15,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ingredientsDiv = document.getElementById("cookbook-create-ingredients");
     stepsDiv = document.getElementById("cookbook-create-steps");
     tagsDiv = document.getElementById("cookbook-create-tags");
+
+    titleInput = document.getElementById("cookbook-create-title");
+    firstStep = document.getElementById("step-1");
 });
 
 function addIngredientField() {
@@ -36,4 +42,14 @@ function addTagField() {
     newTag.setAttribute("class", "cookbook-create-tag");
     newTag.innerHTML = tag;
     tagsDiv.appendChild(newTag);
+}
+
+function submitForm() {
+    if (titleInput.value === "") {
+        alert("Please enter a title for the recipe.");
+    } else if (firstStep.value === "") {
+        alert("Please enter at least one step (i.e. Step 1 cannot be empty)");
+    } else {
+        document.forms["cookbook-create-form"].submit();
+    }
 }
