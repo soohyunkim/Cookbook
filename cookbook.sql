@@ -84,11 +84,11 @@ INSERT INTO Users (email, uName, password) VALUES ('chris.99@sample.com', 'Chris
 INSERT INTO Users (email, uName, password) VALUES ('david.k@sample.com', 'David', '123abc');
 INSERT INTO Users (email, uName, password) VALUES ('emily604@sample.com', 'Emily', '123123123112313');
 
-INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('1', 'Simple Macaroni and Cheese', 'pasta', 2, 30);
-INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('2', 'Good Old Fashioned Pancakes', 'breakfast', 1, 20);
-INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('3', 'Pork Dumplings', 'Asian', 2, 50);
-INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('4', 'Beef Bulgogi', 'Asian', 1, 65);
-INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('5', 'Guacamole', 'Appetizer', 1, 10);
+INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('1', 'Simple Macaroni and Cheese', 'American', 2, 30);
+INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('2', 'Good Old Fashioned Pancakes', 'American', 1, 20);
+INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('3', 'Pork Dumplings', 'Chinese', 2, 50);
+INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('4', 'Beef Bulgogi', 'Korean', 1, 65);
+INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('5', 'Guacamole', 'Mexican', 1, 10);
 
 INSERT INTO IncludedStep (sid, rid, instruction) VALUES (1, '1', 'Bring a large pot of lightly salted water to a boil. Cook elbow macaroni in the boiling water, stirring occasionally until cooked through but firm to the bite, 8 minutes. Drain.');
 INSERT INTO IncludedStep (sid, rid, instruction) VALUES (2, '1', 'Melt butter in a saucepan over medium heat; stir in flour, salt, and pepper until smooth, about 5 minutes. Slowly pour milk into butter-flour mixture while continuously stirring until mixture is smooth and bubbling, about 5 minutes. Add Cheddar cheese to milk mixture and stir until cheese is melted, 2 to 4 minutes.');
