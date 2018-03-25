@@ -55,6 +55,7 @@ CREATE TABLE SearchableBy (
 CREATE TABLE Uses (
   rid   CHAR(20),
   iName CHAR(50),
+  quantity CHAR(20),
   PRIMARY KEY (rid, iName),
   FOREIGN KEY (rid) REFERENCES Recipe (rid),
   FOREIGN KEY (iName) REFERENCES Ingredient (iName)
@@ -151,45 +152,45 @@ INSERT INTO SearchableBy(tagName, rid) VALUES ('bulgogi', '4');
 INSERT INTO SearchableBy(tagName, rid) VALUES ('guacamole', '5');
 INSERT INTO SearchableBy(tagName, rid) VALUES ('dip', '5');
 
-INSERT INTO Uses(rid, iName) VALUES('1', 'elbow macaroni');
-INSERT INTO Uses(rid, iName) VALUES('1', 'butter');
-INSERT INTO Uses(rid, iName) VALUES('1', 'flour');
-INSERT INTO Uses(rid, iName) VALUES('1', 'salt');
-INSERT INTO Uses(rid, iName) VALUES('1', 'pepper');
-INSERT INTO Uses(rid, iName) VALUES('1', 'milk');
-INSERT INTO Uses(rid, iName) VALUES('1', 'cheddar cheese');
-INSERT INTO Uses(rid, iName) VALUES('2', 'flour');
-INSERT INTO Uses(rid, iName) VALUES('2', 'baking powder');
-INSERT INTO Uses(rid, iName) VALUES('2', 'salt');
-INSERT INTO Uses(rid, iName) VALUES('2', 'sugar');
-INSERT INTO Uses(rid, iName) VALUES('2', 'milk');
-INSERT INTO Uses(rid, iName) VALUES('2', 'egg');
-INSERT INTO Uses(rid, iName) VALUES('2', 'butter');
-INSERT INTO Uses(rid, iName) VALUES('3', 'pork');
-INSERT INTO Uses(rid, iName) VALUES('3', 'ginger');
-INSERT INTO Uses(rid, iName) VALUES('3', 'garlic');
-INSERT INTO Uses(rid, iName) VALUES('3', 'green onion');
-INSERT INTO Uses(rid, iName) VALUES('3', 'soy sauce');
-INSERT INTO Uses(rid, iName) VALUES('3', 'sesame oil');
-INSERT INTO Uses(rid, iName) VALUES('3', 'egg');
-INSERT INTO Uses(rid, iName) VALUES('3', 'cabbage');
-INSERT INTO Uses(rid, iName) VALUES('3', 'wonton skin');
-INSERT INTO Uses(rid, iName) VALUES('4', 'beef');
-INSERT INTO Uses(rid, iName) VALUES('4', 'soy sauce');
-INSERT INTO Uses(rid, iName) VALUES('4', 'sugar');
-INSERT INTO Uses(rid, iName) VALUES('4', 'green onion');
-INSERT INTO Uses(rid, iName) VALUES('4', 'garlic');
-INSERT INTO Uses(rid, iName) VALUES('4', 'sesame seeds');
-INSERT INTO Uses(rid, iName) VALUES('4', 'sesame oil');
-INSERT INTO Uses(rid, iName) VALUES('4', 'black pepper');
-INSERT INTO Uses(rid, iName) VALUES('5', 'avocado');
-INSERT INTO Uses(rid, iName) VALUES('5', 'lime juice');
-INSERT INTO Uses(rid, iName) VALUES('5', 'salt');
-INSERT INTO Uses(rid, iName) VALUES('5', 'onion');
-INSERT INTO Uses(rid, iName) VALUES('5', 'cilantro');
-INSERT INTO Uses(rid, iName) VALUES('5', 'tomato');
-INSERT INTO Uses(rid, iName) VALUES('5', 'garlic');
-INSERT INTO Uses(rid, iName) VALUES('5', 'cayenne pepper');
+INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'elbow macaroni', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'butter', '5 tbsp');
+INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'flour', '250mL');
+INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'salt', 'pinch of');
+INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'pepper', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'milk', '250mL');
+INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'cheddar cheese', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('2', 'flour', '250mL');
+INSERT INTO Uses(rid, iName, quantity) VALUES('2', 'baking powder', '5 tsp');
+INSERT INTO Uses(rid, iName, quantity) VALUES('2', 'salt' 'pinch of');
+INSERT INTO Uses(rid, iName, quantity) VALUES('2', 'sugar', '50mL');
+INSERT INTO Uses(rid, iName, quantity) VALUES('2', 'milk', '250mL');
+INSERT INTO Uses(rid, iName, quantity) VALUES('2', 'egg', '1');
+INSERT INTO Uses(rid, iName, quantity) VALUES('2', 'butter', '5mL');
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'pork', '1kg');
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'ginger', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'garlic', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'green onion', '1');
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'soy sauce', '2 tsp');
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'sesame oil', '1 tbsp');
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'egg', '1');
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'cabbage', '1');
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'wonton skin', '5');
+INSERT INTO Uses(rid, iName, quantity) VALUES('4', 'beef', '2kg');
+INSERT INTO Uses(rid, iName, quantity) VALUES('4', 'soy sauce', '1 tsp');
+INSERT INTO Uses(rid, iName, quantity) VALUES('4', 'sugar', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('4', 'green onion', '1');
+INSERT INTO Uses(rid, iName, quantity) VALUES('4', 'garlic', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('4', 'sesame seeds', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('4', 'sesame oil', '1 tsp');
+INSERT INTO Uses(rid, iName, quantity) VALUES('4', 'black pepper', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'avocado', '1');
+INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'lime juice', '50mL');
+INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'salt', 'pinch of');
+INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'onion', '1/2');
+INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'cilantro', null);
+INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'tomato',  '2');
+INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'garlic', '1');
+INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'cayenne pepper', null);
 
 INSERT INTO ConsistsOf(email, cid, rid) VALUES ('alice123@sample.com', '1', '3');
 INSERT INTO ConsistsOf(email, cid, rid) VALUES ('alice123@sample.com', '1', '4');
