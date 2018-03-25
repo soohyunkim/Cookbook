@@ -109,6 +109,7 @@ INSERT INTO Tag(tagName) VALUES ('dumplings');
 INSERT INTO Tag(tagName) VALUES ('bulgogi');
 INSERT INTO Tag(tagName) VALUES ('guacamole');
 INSERT INTO Tag(tagName) VALUES ('dip');
+INSERT INTO Tag(tagName) VALUES ('classic');
 
 INSERT INTO ManagedCookbook(cookbookTitle, description, cid, email) VALUES ('Good Asian Recipes', 'Favourite Asian recipes', '1', 'alice123@sample.com');
 INSERT INTO ManagedCookbook(cookbookTitle, description, cid, email) VALUES ('Breakfast', 'Delicious breakfast recipes', '2', 'alice123@sample.com');
@@ -146,6 +147,8 @@ INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('
 
 INSERT INTO SearchableBy(tagName, rid) VALUES ('pasta', '1');
 INSERT INTO SearchableBy(tagName, rid) VALUES ('mac and cheese', '1');
+INSERT INTO SearchableBy(tagName, rid) VALUES ('classic', '1');
+INSERT INTO SearchableBy(tagName, rid) VALUES ('classic', '2');
 INSERT INTO SearchableBy(tagName, rid) VALUES ('pancakes', '2');
 INSERT INTO SearchableBy(tagName, rid) VALUES ('dumplings', '3');
 INSERT INTO SearchableBy(tagName, rid) VALUES ('bulgogi', '4');

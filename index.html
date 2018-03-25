@@ -3,6 +3,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css">
 <script src="tabs.js"></script>
+<script src="create.js"></script>
 
 <body>
   <div class="cookbook-title">
@@ -48,27 +49,27 @@
         </div>
         <!-- create -->
         <div class="cookbook-tab-content">
-          <h3 class="align-left">Create a New Recipe</h3>
-          <h6 class="align-left">Upload a new recipe to the database to share it with other users.</h6>
+          <h3 class="cookbook-create-header">Create a New Recipe</h3>
+          <p>Upload a new recipe to the database to share it with other users.</p>
 
           <form id="cookbook-create-form">
 
             <!-- Recipe Name -->
-            <div class="cookbook-create-section">
+            <div class="cookbook-create-section cookbook-create-title">
               <label>Recipe Name:</label>
-              <input type="text" id="title" name="title">
+              <input type="text" name="title">
             </div>
 
             <!-- Cuisine -->
             <div class="cookbook-create-section">
               <label>Cuisine:</label>
-              <input type="text" id="cuisine" name="cuisine">
+              <input type="text" name="cuisine">
             </div>
             
             <!-- Difficulty -->
             <div class="cookbook-create-section">
               <label>Difficulty:</label>
-              <select>
+              <select class="cookbook-create-difficulty">
                 <option value="1">1 (Very Easy)</option>
                 <option value="2">2 (Easy)</option>
                 <option value="3">3 (Moderate)</option>
@@ -78,35 +79,40 @@
             </div>
             
             <!-- Cooking Time -->
-            <div class="cookbook-create-section">
+            <div class="cookbook-create-section cookbook-create-time">
               <label>Cooking Time (in minutes):</label>
-              <input type="text" id="time" name="time">
+              <input type="text" name="time">
             </div>
 
             <!-- Ingredients -->
             <div class="cookbook-create-section">
               <label>Ingredients:</label>
-              <div class="cookbook-create-section-ingredient">
-                <input type="text" id="ingredient_qty-1" name="ingredient_qty-1" placeholder="Quantity">
-                <input type="text" id="ingredient_desc-1" name="ingredient_desc-1" placeholder="Ingredient">
+              <div id="cookbook-create-ingredients">
+                <div class="cookbook-create-ingredient">
+                  <input type="text" class="ingredient_qty" name="ingredient_qty" placeholder="Quantity">
+                  <input type="text" class="ingredient_desc" name="ingredient_desc" placeholder="Ingredient">
+                </div>
               </div>
-              <button>Add Ingredient</button>
+              <button type="button" onClick="addIngredientField()">Add Ingredient</button>
             </div>
 
             <!-- Steps -->
             <div class="cookbook-create-section">
               <label>Steps:</label>
-              <div class="cookbook-create-section-step">
-                <label>Step 1:</label>
-                <input type="text" id="cuisine" name="cuisine">
+              <div id="cookbook-create-steps">
+                <div class="cookbook-create-step">
+                  <label>Step 1:</label>
+                  <input type="text" name="step-1">
+                </div>
               </div>
-              <button>Add Step</button>
+              <button type="button" onClick="addStepField()">Add Step</button>
             </div>
 
             <!-- Tags -->
             <div class="cookbook-create-section">
               <label>Tags:</label>
-              <button>Add Tag</button>
+              <div id="cookbook-create-tags"></div>
+              <button type="button" onClick="addTagField()">Add Tag</button>
             </div>
 
             <!-- Submit Button -->
