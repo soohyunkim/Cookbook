@@ -13,9 +13,15 @@ div.cookbook-tab-container{
   border-radius: 4px;
   -moz-border-radius: 4px;
   border:1px solid #ffffff;
-  margin-left: 50px;
-  margin-top: 50px;
+  margin: 50px 100px 0;
   background-clip: padding-box;
+}
+
+/* Less Margins for Smaller Screens */
+@media screen and (max-width: 992px) {
+  div.cookbook-tab-container {
+    margin: 0 20px;
+  }
 }
 
 div.cookbook-tab-menu{
@@ -68,10 +74,74 @@ div.cookbook-tab-menu div.list-group>a.active:after{
 div.cookbook-tab-content{
   background-color: #ffffff;
   border: 1px solid #eeeeee;
-  padding-left: 20px;
-  padding-top: 10px;
+  padding: 10px 20px;
+  height: 60vh;
+  overflow-y: scroll;
 }
 
 div.cookbook-tab div.cookbook-tab-content:not(.active){
   display: none;
+}
+
+/* Create Section and Form */
+h3.cookbook-create-header {
+  text-align: left;
+  margin-top: 4px;
+}
+
+form#cookbook-create-form {
+  padding-top: 2px;
+}
+
+div.cookbook-create-section {
+  margin: 8px 0;
+}
+
+div.cookbook-create-section button {
+  color: #ffffff;
+  background-color: #ED6347;
+  padding: 4px 8px;
+  margin: 4px 0 8px;
+  border-width: 0;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+div.cookbook-create-section input,
+div.cookbook-create-section select {
+  outline: 0;
+  margin: 2px 0;
+  padding: 0 4px;
+}
+
+div.cookbook-create-section button:active,
+div.cookbook-create-section button:focus {
+  outline: 0;
+  border-width: 0;
+}
+
+input#cookbook-create-title {
+  width: 50%;
+}
+
+div.cookbook-create-time input {
+  width: 50px;
+}
+
+select.cookbook-create-cuisine,
+select.cookbook-create-difficulty {
+  width: 110px;
+}
+
+div.cookbook-create-ingredient .ingredient_qty {
+  width: 20%;
+  max-width: 100px;
+}
+
+div.cookbook-create-ingredient .ingredient_desc {
+  width: 30%;
+}
+
+div.cookbook-create-step input {
+  width: 75%;
 }
