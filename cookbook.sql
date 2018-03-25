@@ -164,7 +164,7 @@ INSERT INTO Uses(rid, iName, quantity) VALUES(1, 'milk', '250mL');
 INSERT INTO Uses(rid, iName, quantity) VALUES(1, 'cheddar cheese', null);
 INSERT INTO Uses(rid, iName, quantity) VALUES(2, 'flour', '250mL');
 INSERT INTO Uses(rid, iName, quantity) VALUES(2, 'baking powder', '5 tsp');
-INSERT INTO Uses(rid, iName, quantity) VALUES(2, 'salt' 'pinch of');
+INSERT INTO Uses(rid, iName, quantity) VALUES(2, 'salt', 'pinch of');
 INSERT INTO Uses(rid, iName, quantity) VALUES(2, 'sugar', '50mL');
 INSERT INTO Uses(rid, iName, quantity) VALUES(2, 'milk', '250mL');
 INSERT INTO Uses(rid, iName, quantity) VALUES(2, 'egg', '1');
