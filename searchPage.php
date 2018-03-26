@@ -12,7 +12,11 @@
 include_once 'connection.php';
 if ($db_conn) {
     // hardcoded to get all for now, modify to use LIKE
-    $result=  executePlainSQL("SELECT RECIPETITLE FROM RECIPE");
+    $searchString = $_POST['searchText'];
+    $result=  executePlainSQL(
+        "SELECT RECIPETITLE 
+        FROM RECIPE
+        WHERE LOWER(RECIPETITLE) LIKE '%" .  $searchString  . "%'");
     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
         echo "<div class='result'>";
         if (array_key_exists("RECIPETITLE", $row)) {
