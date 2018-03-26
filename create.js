@@ -5,11 +5,10 @@ var tagsDiv;
 var titleInput;
 var firstStep;
 
+var ingredientNum = 1;
 var stepNum = 1;
 
-var tag = "<input type'text' class='tag' name='tag'>";
-var quantity = "<input type='text' class='ingredient_qty' name='ingredient_qty' placeholder='Quantity'>";
-var ingredient = "<input type='text' class='ingredient_desc' name='ingredient_desc' placeholder='Ingredient'>";
+var tag = "<input type='text' class='tag' name='tags[]'>";
 
 document.addEventListener("DOMContentLoaded", function(event) {
     ingredientsDiv = document.getElementById("cookbook-create-ingredients");
@@ -21,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function addIngredientField() {
+    ingredientNum++;
+    var quantity = "<input type='text' class='ingredient_qty' name='quantity[" + ingredientNum + "][]' placeholder='Quantity'>";
+    var ingredient = "<input type='text' class='ingredient_desc' name='ingredient[" + ingredientNum + "][]' placeholder='Ingredient'>";
     var newIngredient = document.createElement("div");
     newIngredient.setAttribute("class", "cookbook-create-ingredient");
     newIngredient.innerHTML = quantity + " " + ingredient;
@@ -30,7 +32,7 @@ function addIngredientField() {
 function addStepField() {
     stepNum++;
     var stepLabel = "<label>Step " + stepNum + ":</label>";
-    var stepInput = "<input type='text' name='step-" + stepNum + "'>";
+    var stepInput = "<input type='text' name='instruction[" + stepNum + "][]'>";
     var newStep = document.createElement("div");
     newStep.setAttribute("class", "cookbook-create-step");
     newStep.innerHTML = stepLabel + " " + stepInput;

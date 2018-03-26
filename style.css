@@ -83,11 +83,12 @@ div.cookbook-tab div.cookbook-tab-content:not(.active){
   display: none;
 }
 
-/* Create Section and Form */
-h3.cookbook-create-header {
+h3.cookbook-section-header {
   text-align: left;
   margin-top: 4px;
 }
+
+/* Create Section and Form */
 
 form#cookbook-create-form {
   padding-top: 2px;

@@ -1,3 +1,4 @@
+<!-- NOTE!!!!! DELETE THIS FILE AND USE INDEX.PHP -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -52,7 +53,7 @@
           <h3 class="cookbook-create-header">Create a New Recipe</h3>
           <p>Upload a new recipe to the database to share it with other users.</p>
 
-          <form id="cookbook-create-form">
+          <form id="cookbook-create-form" method="post" action="recipe.php">
 
             <!-- Recipe Name -->
             <div class="cookbook-create-section">
@@ -63,7 +64,7 @@
             <!-- Cuisine -->
             <div class="cookbook-create-section">
               <label>Cuisine:</label>
-              <select class="cookbook-create-cuisine">
+              <select class="cookbook-create-cuisine" name="cuisine">
                 <option value="Other">Other</option>
                 <option value="Chinese">Chinese</option>
                 <option value="Korean">Korean</option>
@@ -82,7 +83,7 @@
             <!-- Difficulty -->
             <div class="cookbook-create-section">
               <label>Difficulty:</label>
-              <select class="cookbook-create-difficulty">
+              <select class="cookbook-create-difficulty" name="difficulty">
                 <option value="1">1 (Very Easy)</option>
                 <option value="2">2 (Easy)</option>
                 <option value="3">3 (Moderate)</option>
@@ -102,8 +103,8 @@
               <label>Ingredients:</label>
               <div id="cookbook-create-ingredients">
                 <div class="cookbook-create-ingredient">
-                  <input type="text" class="ingredient_qty" name="ingredient_qty" placeholder="Quantity">
-                  <input type="text" class="ingredient_desc" name="ingredient_desc" placeholder="Ingredient">
+                  <input type="text" class="ingredient_qty" name="quantity[1][]" placeholder="Quantity">
+                  <input type="text" class="ingredient_desc" name="ingredient[1][]" placeholder="Ingredient">
                 </div>
               </div>
               <button type="button" onClick="addIngredientField()">Add Ingredient</button>
@@ -115,7 +116,7 @@
               <div id="cookbook-create-steps">
                 <div class="cookbook-create-step">
                   <label>Step 1:</label>
-                  <input type="text" id="step-1" name="step-1">
+                  <input type="text" id="step-1" name="instruction[1][]">
                 </div>
               </div>
               <button type="button" onClick="addStepField()">Add Step</button>
