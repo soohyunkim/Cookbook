@@ -56,7 +56,7 @@
         <div id="cookbook-create-ingredients">
         <div class="cookbook-create-ingredient">
             <input type="text" class="ingredient_qty" name="quantity[1][]" placeholder="Quantity">
-            <input type="text" class="ingredient_desc" name="ingredient[1][]" placeholder="Ingredient">
+            <input type="text" id="ingr-1" class="ingredient_desc" name="ingredient[1][]" placeholder="Ingredient">
         </div>
         </div>
         <button type="button" onClick="addIngredientField()">Add Ingredient</button>

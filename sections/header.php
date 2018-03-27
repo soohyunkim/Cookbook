@@ -39,6 +39,6 @@
                     </div>
                 </div>
 
-                <!-- Cookbook Tabs (Sections) -->
+                <!-- Cookbook Content -->
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 cookbook-tab">
                     <div class="cookbook-tab-content active">
