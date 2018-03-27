@@ -18,10 +18,11 @@
             if (array_key_exists("RECIPETITLE", $row)) {
                 $rid = $row["RID"];
                 $title = $row["RECIPETITLE"];
-                echo "<p><a href='recipe.php?rid=".$rid."'>".$title."</a></p>";
+                echo "<a href='recipe.php?rid=".$rid."'>".$title."</a>";
             } else {
                 echo "<p>You have no bookmarked recipes.</p>";
             }
+            echo "</div>";
         }
         OCILogoff($db_conn);
     } else {

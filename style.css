@@ -83,7 +83,8 @@ div.cookbook-tab div.cookbook-tab-content:not(.active){
   display: none;
 }
 
-h3.cookbook-section-header {
+h3.cookbook-section-header,
+h4.cookbook-section-header {
   text-align: left;
   margin-top: 4px;
 }
@@ -100,6 +101,15 @@ div.login-field-wrap {
 div.login-field-wrap label {
   min-width: 70px;
   display: inline-block;
+}
+
+/* Recipe Page */
+div.recipe-tag {
+  display: inline-block;
+  border: 1px solid #cccccc;
+  margin: 2px;
+  padding: 2px 8px;
+  border-radius: 100px;
 }
 
 /* Create Section and Form */
