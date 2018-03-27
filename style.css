@@ -88,6 +88,20 @@ h3.cookbook-section-header {
   margin-top: 4px;
 }
 
+/* Login Page */
+h3.login-header{
+  text-align: left;
+}
+
+div.login-field-wrap {
+  padding: 2px 0;
+}
+
+div.login-field-wrap label {
+  min-width: 70px;
+  display: inline-block;
+}
+
 /* Create Section and Form */
 
 form#cookbook-create-form {
@@ -98,6 +112,7 @@ div.cookbook-create-section {
   margin: 8px 0;
 }
 
+button.login-button,
 div.cookbook-create-section button {
   color: #ffffff;
   background-color: #ED6347;
@@ -115,6 +130,7 @@ div.cookbook-create-section select {
   padding: 0 4px;
 }
 
+.login-button,
 div.cookbook-create-section button:active,
 div.cookbook-create-section button:focus {
   outline: 0;
