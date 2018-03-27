@@ -87,9 +87,8 @@
         </div>
 
     </form>
-<?php require "footer.php"; ?>
 <?php
-include_once 'connection.php';
+include_once '../connection.php';
 
 if ($db_conn) {
 
@@ -141,3 +140,4 @@ if ($db_conn) {
 }
 
 ?>
+<?php require "footer.php"; ?>
