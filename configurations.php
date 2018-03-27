@@ -1,6 +1,6 @@
 <?php
 return array(
-    'db_username' => 'ora_o5e0b',
-    'db_password' => 'a27786145',
+    'db_username' => 'ora_h5y9a',
+    'db_password' => 'a22167143',
 );
 ?>
