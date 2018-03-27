@@ -12,7 +12,7 @@
             // TODO: add bookmarking button
     
             // Recipe Title, Cuisine, Difficulty, and Cooking Time
-            $query ="SELECT RECIPETITLE, CUISINE, DIFFICULTY, COOKINGTIME FROM RECIPE WHERE RID = $rid";
+            $query ="SELECT RECIPETITLE, CUISINE, DIFFICULTY, COOKINGTIME FROM RECIPE WHERE RID = '$rid'";
             $result = executePlainSQL($query);
             while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                 if (array_key_exists("RECIPETITLE", $row)) {
@@ -52,15 +52,14 @@
             }
 
             // Ingredients
-            // TODO: Quantity doesn't work
-            $queryIngredients = "SELECT INAME FROM USES WHERE RID = $rid";
+            $queryIngredients = "SELECT INAME, QUANTITY FROM USES WHERE RID = '$rid'";
             $resultIngredients = executePlainSQL($queryIngredients);
             $ingredients = [];
             while ($row = OCI_Fetch_Array($resultIngredients, OCI_BOTH)) {
-                // if (array_key_exists("INAME", $row) && array_key_exists("QUANTITY", $row)) {
-                if (array_key_exists("INAME", $row)) {
-                    // $ingredient = array($row["INAME"]=>$row["QUANTITY"]);
-                    $ingredient = array($row["INAME"]=>'1');
+                if (array_key_exists("INAME", $row) && array_key_exists("QUANTITY", $row)) {
+                // if (array_key_exists("INAME", $row)) {
+                    $ingredient = array($row["INAME"]=>$row["QUANTITY"]);
+                    // $ingredient = array($row["INAME"]=>'1');
                     $ingredients = array_merge($ingredients, $ingredient);
                 } else {
                     echo "no ingredients";
@@ -68,7 +67,7 @@
             }
 
             // Steps
-            $querySteps = "SELECT INSTRUCTION FROM INCLUDEDSTEP WHERE RID = $rid ORDER BY SID";
+            $querySteps = "SELECT INSTRUCTION FROM INCLUDEDSTEP WHERE RID = '$rid' ORDER BY SID";
             $resultSteps = executePlainSQL($querySteps);
             $steps = [];
             while ($row = OCI_Fetch_Array($resultSteps, OCI_BOTH)) {
@@ -78,7 +77,7 @@
             }
 
             // Tags
-            $queryTags = "SELECT TAGNAME FROM SEARCHABLEBY WHERE RID = $rid";
+            $queryTags = "SELECT TAGNAME FROM SEARCHABLEBY WHERE RID = '$rid'";
             $resultTags = executePlainSQL($queryTags);
             $tags = [];
             while ($row = OCI_Fetch_Array($resultTags, OCI_BOTH)) {
