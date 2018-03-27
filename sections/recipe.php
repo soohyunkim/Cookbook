@@ -57,13 +57,34 @@
             $ingredients = [];
             while ($row = OCI_Fetch_Array($resultIngredients, OCI_BOTH)) {
                 if (array_key_exists("INAME", $row) && array_key_exists("QUANTITY", $row)) {
-                // if (array_key_exists("INAME", $row)) {
                     $ingredient = array($row["INAME"]=>$row["QUANTITY"]);
-                    // $ingredient = array($row["INAME"]=>'1');
                     $ingredients = array_merge($ingredients, $ingredient);
                 } else {
                     echo "no ingredients";
                 }
+            }
+
+            // Ingredient Info
+            // ingredientName=>[description, nutritionalFacts]
+            $ingredientInfo = [];
+            foreach ($ingredients as $iName => $qty) {
+                $description = "";
+                $facts = "";
+                $queryInfo = "SELECT DESCRIPTION, NUTRITIONALFACTS FROM INGREDIENT WHERE INAME = '$iName'";
+                $resultInfo = executePlainSQL($queryInfo);
+                while ($row = OCI_Fetch_Array($resultInfo, OCI_BOTH)) {
+                    if (array_key_exists("DESCRIPTION", $row)) {
+                        $description = $row["DESCRIPTION"];
+                    }
+                    if (array_key_exists("NUTRITIONALFACTS", $row)) {
+                        $facts = $row["NUTRITIONALFACTS"];
+                    }
+                }
+                $ingredient = array($iName=>array(
+                    "description"=>$description,
+                    "facts"=>$facts
+                ));
+                $ingredientInfo = array_merge($ingredientInfo, $ingredient);
             }
 
             // Steps
@@ -102,6 +123,12 @@
             echo "<br><h4 class='cookbook-section-header'>Ingredients</h4>";
             foreach ($ingredients as $ingredient => $quantity) {
                 echo "$quantity $ingredient<br>";
+            }
+
+            foreach ($ingredientInfo as $ingredient => $info) {
+                $description = $info["description"];
+                $facts = $info["facts"];
+                echo "<b>$ingredient</b>: $description ~ $facts<br>";
             }
 
             echo "<br><h4 class='cookbook-section-header'>Instructions</h4>";
