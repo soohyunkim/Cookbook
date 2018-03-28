@@ -13,6 +13,7 @@ CREATE TABLE Users (
   email    CHAR(50),
   uName    CHAR(50),
   password CHAR(20),
+  type     CHAR(20),
   PRIMARY KEY (email)
 );
 
@@ -89,11 +90,12 @@ CREATE TABLE Bookmarks (
   FOREIGN KEY (rid) REFERENCES Recipe (rid)
 );
 
-INSERT INTO Users (email, uName, password) VALUES ('alice123@sample.com', 'Alice', '12345678');
-INSERT INTO Users (email, uName, password) VALUES ('ben010@sample.com', 'Ben', '1231323');
-INSERT INTO Users (email, uName, password) VALUES ('chris.99@sample.com', 'Chris', 'asdfjkl');
-INSERT INTO Users (email, uName, password) VALUES ('david.k@sample.com', 'David', '123abc');
-INSERT INTO Users (email, uName, password) VALUES ('emily604@sample.com', 'Emily', '123123123112313');
+INSERT INTO Users (email, uName, password, type) VALUES ('alice123@sample.com', 'Alice', '12345678', 'normal');
+INSERT INTO Users (email, uName, password, type) VALUES ('ben010@sample.com', 'Ben', '1231323', 'normal');
+INSERT INTO Users (email, uName, password, type) VALUES ('chris.99@sample.com', 'Chris', 'asdfjkl', 'normal');
+INSERT INTO Users (email, uName, password, type) VALUES ('david.k@sample.com', 'David', '123abc', 'normal');
+INSERT INTO Users (email, uName, password, type) VALUES ('emily604@sample.com', 'Emily', '123123123112313', 'normal');
+INSERT INTO Users (email, uName, password, type) VALUES ('admin@sample.com', 'Administrator', '12345678', 'admin');
 
 INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('1', 'Simple Macaroni and Cheese', 'American', 2, 30);
 INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('2', 'Good Old Fashioned Pancakes', 'American', 1, 20);

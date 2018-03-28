@@ -53,8 +53,8 @@ div.cookbook-tab-menu div.list-group>a.active .fa{
   color: #ffffff;
 }
 
-div.cookbook-tab-menu div.list-group>a.active, 
-div.cookbook-tab-menu div.list-group>a.active:hover, 
+div.cookbook-tab-menu div.list-group>a.active,
+div.cookbook-tab-menu div.list-group>a.active:hover,
 div.cookbook-tab-menu div.list-group>a.active:focus {
   border-color: #ED6347;
 }
@@ -207,7 +207,7 @@ div.cookbook-create-section button {
 div.cookbook-create-section input,
 div.cookbook-create-section select,
 div.cookbook-search-section input,
-div.cookbook-search-section select, {
+div.cookbook-search-section select {
   outline: 0;
   margin: 2px 0;
   padding: 0 4px;
@@ -256,7 +256,7 @@ div.cookbook-create-step input {
 }
 
 .cookbook-search-section .input-group-addon{
-  background: #ED6347 !important; 
+  background: #ED6347 !important;
   border-color: #ED6347;
 }
 
@@ -265,8 +265,8 @@ div.cookbook-create-step input {
 }
 
 .cookbook-search-section .form-control{
-box-shadow:0 0 0; 
-border-color:#ccc;
+  box-shadow:0 0 0;
+  border-color:#ccc;
 }
 .cookbook-search-section button{
   border: 0;
