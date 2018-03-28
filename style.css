@@ -84,6 +84,17 @@ div.cookbook-tab div.cookbook-tab-content:not(.active){
   display: none;
 }
 
+#logout-form {
+  position: relative;
+}
+
+button.logout-button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 12px !important;
+}
+
 h3.cookbook-section-header,
 h4.cookbook-section-header {
   text-align: left;
@@ -179,6 +190,7 @@ div.cookbook-create-section {
 }
 
 button.login-button,
+button.logout-button,
 div.cookbook-create-section button {
   color: #ffffff;
   background-color: #ED6347;
@@ -200,6 +212,7 @@ div.cookbook-search-section select, {
 
 button.ingredient-close,
 button.login-button,
+button.logout-button,
 div.cookbook-create-section button:active,
 div.cookbook-create-section button:focus {
   outline: 0;
