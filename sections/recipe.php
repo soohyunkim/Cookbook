@@ -122,7 +122,12 @@
             // RENDER RECIPE
 
             // Title
-            echo "<h3 class='cookbook-section-header'>$title</h3>";
+            echo "<form id='bookmark-form' method='post' action='recipe.php'>
+                <h3 class='cookbook-section-header'>
+                    $title
+                    <span class='glyphicon glyphicon-bookmark bookmark-icon unbookmarked' onClick='bookmarkClicked()' name='bookmarkToggle'></span>
+                </h3>
+            </form>";
 
             echo "<div>";
             

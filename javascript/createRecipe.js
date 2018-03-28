@@ -64,7 +64,7 @@ function validateIngredients() {
     return true;
 }
 
-function submitForm() {
+function submitRecipeForm() {
     if (titleInput.value === "") {
         alert("Please enter a title for the recipe.");
     } else if (firstIngredient.value === "") {

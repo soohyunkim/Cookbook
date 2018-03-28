@@ -84,6 +84,17 @@ div.cookbook-tab div.cookbook-tab-content:not(.active){
   display: none;
 }
 
+#logout-form {
+  position: relative;
+}
+
+button.logout-button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 12px !important;
+}
+
 h3.cookbook-section-header,
 h4.cookbook-section-header {
   text-align: left;
@@ -105,6 +116,19 @@ div.login-field-wrap label {
 }
 
 /* Recipe Page */
+h3.cookbook-section-header .bookmark-icon {
+  font-size: 18px;
+}
+
+h3.cookbook-section-header .bookmark-icon.unbookmarked {
+  color: #FFFFFF;
+  text-shadow: -1px 0 #ED6347, 0 1px #ED6347, 1px 0 #ED6347, 0 -1px #ED6347;
+}
+
+h3.cookbook-section-header .bookmark-icon.bookmarked {
+  color: #ED6347;
+}
+
 div.recipe-tag {
   display: inline-block;
   border: 1px solid #cccccc;
@@ -114,7 +138,7 @@ div.recipe-tag {
 }
 
 span.ingredient-text:hover {
-  color: #4286F4;
+  color: #ED6347;
   font-weight: 500;
   cursor: pointer;
 }
@@ -132,7 +156,7 @@ div#ingredient-modal {
   width: 50%;
   margin: 12% auto 0;
   padding: 8px 24px 56px;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border: 2px solid #ED6347;
   border-radius: 8px;
   position: relative;
@@ -166,6 +190,7 @@ div.cookbook-create-section {
 }
 
 button.login-button,
+button.logout-button,
 div.cookbook-create-section button {
   color: #ffffff;
   background-color: #ED6347;
@@ -177,7 +202,9 @@ div.cookbook-create-section button {
 }
 
 div.cookbook-create-section input,
-div.cookbook-create-section select {
+div.cookbook-create-section select,
+div.cookbook-search-section input,
+div.cookbook-search-section select, {
   outline: 0;
   margin: 2px 0;
   padding: 0 4px;
@@ -185,6 +212,7 @@ div.cookbook-create-section select {
 
 button.ingredient-close,
 button.login-button,
+button.logout-button,
 div.cookbook-create-section button:active,
 div.cookbook-create-section button:focus {
   outline: 0;
@@ -193,6 +221,10 @@ div.cookbook-create-section button:focus {
 
 input#cookbook-create-title {
   width: 50%;
+}
+
+input#cookbook-create-description {
+  width: 80%;
 }
 
 div.cookbook-create-time input {
@@ -215,4 +247,22 @@ div.cookbook-create-ingredient .ingredient_desc {
 
 div.cookbook-create-step input {
   width: 75%;
+}
+
+.cookbook-search-section .input-group-addon{
+  background: #ED6347 !important; 
+  border-color: #ED6347;
+}
+
+.cookbook-search-section .input-group-addon .glyphicon-search{
+  color: white;
+}
+
+.cookbook-search-section .form-control{
+box-shadow:0 0 0; 
+border-color:#ccc;
+}
+.cookbook-search-section button{
+  border: 0;
+  background: transparent;
 }
