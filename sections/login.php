@@ -38,9 +38,7 @@ if ($db_conn) {
         $row = OCI_Fetch_Array($result, OCI_BOTH);
 
         if ($row) {
-            session_start();
-            $_SESSION['email'] = $email;
-            $_SESSION['timeStart'] = time();
+            setcookie("userEmail", $email);
             header("location: search.php");
         } else {
             echo "wrong password or username";
