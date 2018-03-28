@@ -46,13 +46,20 @@ if ($db_conn) {
             executeBoundSQL("INSERT INTO MANAGEDCOOKBOOK VALUES (:cookbookTitle, :description, :cid, :email)", $alltuples);
 
             OCICommit($db_conn);
+        }
+
+        $countQuery = "SELECT DISTINCT COUNT(CID) as CIDCOUNT FROM MANAGEDCOOKBOOK WHERE EMAIL = '" . $userEmail . "'";
+        $countResult = executePlainSQL($countQuery);
+        $countRow = OCI_Fetch_Array($countResult, OCI_BOTH)[0];
+        echo "<p>" . $countRow . "</p>";
+        if ($countRow > 0) {
+            echo "<p>View my cookbooks here: </p>";
         } else {
-            echo "<p>You have no cookbooks.</p>";
+            echo "<p>You don't have any cookbooks :( Create one!</p>";
         }
 
         $query = "SELECT COOKBOOKTITLE, DESCRIPTION, CID FROM MANAGEDCOOKBOOK WHERE EMAIL = '" . $userEmail . "'";
         $result=  executePlainSQL($query);
-        echo "<p>View my cookbooks here: </p>";
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<div class='result'>";
             if (array_key_exists("COOKBOOKTITLE", $row) && array_key_exists("CID", $row)) {
