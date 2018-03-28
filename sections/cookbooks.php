@@ -31,7 +31,7 @@ if ($db_conn) {
 
     $userEmail = $_COOKIE['userEmail'];
 
-    if (array_key_exists('cookbookSubmit', $_POST)) {
+    if (array_key_exists('uploadCookbook', $_POST)) {
         $cookbookInfo = array(
             ":cookbookTitle" => $_POST['cookbookTitle'],
             ":description" => $_POST['cookbookDescription'],
