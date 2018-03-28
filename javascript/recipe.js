@@ -22,3 +22,7 @@ function onIngredientClose() {
         ingredientCurrentEl.classList.remove("active");
     }
 }
+
+function bookmarkClicked() {
+    document.forms["bookmark-form"].submit();
+}

@@ -105,6 +105,19 @@ div.login-field-wrap label {
 }
 
 /* Recipe Page */
+h3.cookbook-section-header .bookmark-icon {
+  font-size: 18px;
+}
+
+h3.cookbook-section-header .bookmark-icon.unbookmarked {
+  color: #FFFFFF;
+  text-shadow: -1px 0 #ED6347, 0 1px #ED6347, 1px 0 #ED6347, 0 -1px #ED6347;
+}
+
+h3.cookbook-section-header .bookmark-icon.bookmarked {
+  color: #ED6347;
+}
+
 div.recipe-tag {
   display: inline-block;
   border: 1px solid #cccccc;
@@ -114,7 +127,7 @@ div.recipe-tag {
 }
 
 span.ingredient-text:hover {
-  color: #4286F4;
+  color: #ED6347;
   font-weight: 500;
   cursor: pointer;
 }
@@ -132,7 +145,7 @@ div#ingredient-modal {
   width: 50%;
   margin: 12% auto 0;
   padding: 8px 24px 56px;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border: 2px solid #ED6347;
   border-radius: 8px;
   position: relative;
