@@ -2,7 +2,7 @@
 
 $success = True;
 $config = include('configurations.php');
-$db_conn = OCILogon($config["db_username"], $config["db_password"], "dbhost.ugrad.cs.ubc.ca:1522/ug");
+$db_conn = oci_connect($config["db_username"], $config["db_password"], "dbhost.ugrad.cs.ubc.ca:1522/ug");
 
 function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
     //echo "<br>running ".$cmdstr."<br>";
