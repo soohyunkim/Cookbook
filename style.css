@@ -272,3 +272,11 @@ div.cookbook-create-step input {
   border: 0;
   background: transparent;
 }
+
+div.filterby {
+  width: 30%;
+}
+
+#search-container {
+  width: 50%;
+}

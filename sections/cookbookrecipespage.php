@@ -37,9 +37,6 @@ if (empty($cid)) {
                 if (array_key_exists("RID", $row)) {
                     $rid = $row["RID"];
                     echo "<p><a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a><br>";
-                    echo "Cuisine: " . $row["CUISINE"] . "<br>";
-                    echo "Difficulty: " . $row["DIFFICULTY"] . "<br>";
-                    echo "Cooking Time (in minutes): " . $row["COOKINGTIME"] . "</p><br>";
                 } else {
                     echo "<p>There are no recipes that match your search.</p>";
                 }
