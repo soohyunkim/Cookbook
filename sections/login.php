@@ -3,7 +3,7 @@ if ($_COOKIE['userEmail'] && $_COOKIE['userType'] === 'normal') {
     header("location: search.php");
     exit;
 } else if ($_COOKIE['userEmail'] && $_COOKIE['userType'] === 'admin') {
-    header("location: ../admin/admin.php");
+    header("location: ../admin/adminHeader.php");
     exit;
 }
 include_once '../connection.php';
@@ -52,7 +52,7 @@ if ($db_conn) {
                 header("location: search.php");
                 exit;
             } else if ($userType === 'admin') {
-                header("location: ../admin/admin.php");
+                header("location: ../admin/adminHeader.php");
                 exit;
             } else {
                 echo "user type error:" . $userType . ".";
