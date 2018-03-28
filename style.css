@@ -77,6 +77,7 @@ div.cookbook-tab-content{
   padding: 10px 20px;
   height: 60vh;
   overflow-y: scroll;
+  position: relative;
 }
 
 div.cookbook-tab div.cookbook-tab-content:not(.active){
@@ -104,12 +105,67 @@ div.login-field-wrap label {
 }
 
 /* Recipe Page */
+h3.cookbook-section-header .bookmark-icon {
+  font-size: 18px;
+}
+
+h3.cookbook-section-header .bookmark-icon.unbookmarked {
+  color: #FFFFFF;
+  text-shadow: -1px 0 #ED6347, 0 1px #ED6347, 1px 0 #ED6347, 0 -1px #ED6347;
+}
+
+h3.cookbook-section-header .bookmark-icon.bookmarked {
+  color: #ED6347;
+}
+
 div.recipe-tag {
   display: inline-block;
   border: 1px solid #cccccc;
-  margin-right: 2px;
+  margin-right: 4px;
   padding: 2px 8px;
   border-radius: 100px;
+}
+
+span.ingredient-text:hover {
+  color: #ED6347;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+div#ingredient-modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(256, 256, 256, 0.8);
+}
+
+div#ingredient-modal {
+  width: 50%;
+  margin: 12% auto 0;
+  padding: 8px 24px 56px;
+  background-color: #FFFFFF;
+  border: 2px solid #ED6347;
+  border-radius: 8px;
+  position: relative;
+}
+
+div.ingredient-info:not(.active) {
+  display: none;
+}
+
+button.ingredient-close {
+  color: #ffffff;
+  background-color: #ED6347;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  margin: 16px 0 8px;
+  border-width: 0;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
 }
 
 /* Create Section and Form */
@@ -142,7 +198,8 @@ div.cookbook-search-section select, {
   padding: 0 4px;
 }
 
-.login-button,
+button.ingredient-close,
+button.login-button,
 div.cookbook-create-section button:active,
 div.cookbook-create-section button:focus {
   outline: 0;

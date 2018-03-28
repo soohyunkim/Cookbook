@@ -131,7 +131,6 @@ if ($db_conn) {
         }
         OCICommit($db_conn);
     }
-    //Commit to save changes...
     OCILogoff($db_conn);
 } else {
     echo "cannot connect";
