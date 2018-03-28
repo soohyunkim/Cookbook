@@ -3,27 +3,25 @@ require "header.php";
 ?>
 
 <h3 class="cookbook-section-header">Cookbooks</h3>
-<p>Manage organized lists of recipes in your own custom cookbooks.</p>
-
 <p>Enter title and description to create your cookbook:</p>
 <form method="post" action="cookbooks.php">
 
     <!-- Cookbook Title -->
     <div class="cookbook-create-section">
-        <label>Title:</label>
+        <label>Cookbook Name:</label>
         <input type="text" id="cookbook-create-title" name="cookbookTitle">
     </div>
     <!-- Cookbook Title -->
     <div class="cookbook-create-section">
         <label>Description:</label>
-        <input type="text" id="cookbook-create-description" name="description">
+        <input type="text" id="cookbook-create-description" name="cookbookDescription">
     </div>
     <!-- Submit Button -->
     <div class="cookbook-create-section">
         <button type="submit" onClick="submitForm()" name="uploadRecipe">Create Cookbook</button>
     </div>
 </form>
-
+<p>Manage organized lists of recipes in your own custom cookbooks.</p>
 <?php
 
 include_once '../connection.php';
@@ -33,7 +31,7 @@ if ($db_conn) {
     if (array_key_exists('cookbookSubmit', $_POST)) {
         $cookbookInfo = array(
             ":cookbookTitle" => $_POST['cookbookTitle'],
-            ":description" => $_POST['description'],
+            ":description" => $_POST['cookbookDescription'],
             ":cid" => uniqid(),
             ":email" => "emily604@sample.com" //TODO: change this to grab the current user's email
         );

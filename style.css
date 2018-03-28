@@ -210,6 +210,10 @@ input#cookbook-create-title {
   width: 50%;
 }
 
+input#cookbook-create-description {
+  width: 80%;
+}
+
 div.cookbook-create-time input {
   width: 50px;
 }
