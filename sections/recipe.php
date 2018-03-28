@@ -132,11 +132,13 @@
             // RENDER RECIPE
 
             // Title and Bookmark Icon
-            echo "<form id='bookmark-form' method='post' action='recipe.php'>
+            echo "<form id='bookmark-form' method='post' action='helper/handleBookmarking.php'>
                 <h3 class='cookbook-section-header'>
                     $title
-                    <span class='glyphicon glyphicon-bookmark bookmark-icon $bookmarkState' onClick='bookmarkClicked()' name='bookmarkToggle'></span>
+                    <button type='submit' class='glyphicon glyphicon-bookmark bookmark-icon $bookmarkState' name='bookmarkToggle'></button>
                 </h3>
+                <input type='hidden' name='rid' value='$rid'>
+                <input type='hidden' name='bookmarkState' value='$bookmarkState'>
             </form>";
 
             echo "<div>";
