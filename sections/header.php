@@ -1,3 +1,8 @@
+<?php
+if (!$_COOKIE["loggedIn"]) {
+    header("location: ../index.php");
+}
+?>
 <html>
     <head>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
