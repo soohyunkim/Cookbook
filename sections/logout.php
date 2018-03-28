@@ -1,4 +1,3 @@
 <?php
-setcookie("userEmail", '');
-setcookie("loggedIn", false);
+setcookie("userEmail", '',time() - 3600, '/');
 header("location: ../index.php");

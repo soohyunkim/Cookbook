@@ -38,12 +38,13 @@ if ($db_conn) {
         $row = OCI_Fetch_Array($result, OCI_BOTH);
 
         if ($row) {
-            setcookie("userEmail", $email);
-            setcookie("loggedIn", true);
+            setcookie("userEmail", $email, 0, '/');
             header("location: search.php");
+            exit;
         } else {
             echo "wrong password or username";
             header("location: ../index.php");
+            exit;
         }
         OCICommit($db_conn);
     }

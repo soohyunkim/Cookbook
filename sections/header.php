@@ -1,6 +1,7 @@
 <?php
-if (!$_COOKIE["loggedIn"]) {
+if (!$_COOKIE['userEmail']) {
     header("location: ../index.php");
+    exit;
 }
 ?>
 <html>
