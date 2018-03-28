@@ -1,6 +1,16 @@
 <?php require "header.php";
 
+    echo "<script src='../javascript/recipe.js'></script>";
+
     $rid = $_GET["rid"];
+
+    function removeSpace($str) {
+        return trim($str, " ");
+    }
+
+    function replaceSpaceWithDash($str) {
+        return preg_replace("/\s/", "-", $str);
+    }
 
     if (empty($rid)) {
         echo "<p>No recipe selected.<br>Click one of the menu options on the left.</p>";
@@ -16,10 +26,10 @@
             $result = executePlainSQL($query);
             while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                 if (array_key_exists("RECIPETITLE", $row)) {
-                    $title = $row["RECIPETITLE"];
+                    $title = removeSpace($row["RECIPETITLE"]);
 
                     if (array_key_exists("CUISINE", $row)) {
-                        $cuisine = $row["CUISINE"];
+                        $cuisine = removeSpace($row["CUISINE"]);
                     }
                     if (array_key_exists("DIFFICULTY", $row)) {
                         switch ($row["DIFFICULTY"]) {
@@ -57,7 +67,7 @@
             $ingredients = [];
             while ($row = OCI_Fetch_Array($resultIngredients, OCI_BOTH)) {
                 if (array_key_exists("INAME", $row) && array_key_exists("QUANTITY", $row)) {
-                    $ingredient = array($row["INAME"]=>$row["QUANTITY"]);
+                    $ingredient = array(removeSpace($row["INAME"])=>removeSpace($row["QUANTITY"]));
                     $ingredients = array_merge($ingredients, $ingredient);
                 } else {
                     echo "no ingredients";
@@ -74,10 +84,10 @@
                 $resultInfo = executePlainSQL($queryInfo);
                 while ($row = OCI_Fetch_Array($resultInfo, OCI_BOTH)) {
                     if (array_key_exists("DESCRIPTION", $row)) {
-                        $description = $row["DESCRIPTION"];
+                        $description = removeSpace($row["DESCRIPTION"]);
                     }
                     if (array_key_exists("NUTRITIONALFACTS", $row)) {
-                        $facts = $row["NUTRITIONALFACTS"];
+                        $facts = removeSpace($row["NUTRITIONALFACTS"]);
                     }
                 }
                 $ingredient = array($iName=>array(
@@ -93,7 +103,7 @@
             $steps = [];
             while ($row = OCI_Fetch_Array($resultSteps, OCI_BOTH)) {
                 if (array_key_exists("INSTRUCTION", $row)) {
-                    array_push($steps, $row["INSTRUCTION"]);
+                    array_push($steps, removeSpace($row["INSTRUCTION"]));
                 }
             }
 
@@ -103,40 +113,65 @@
             $tags = [];
             while ($row = OCI_Fetch_Array($resultTags, OCI_BOTH)) {
                 if (array_key_exists("TAGNAME", $row)) {
-                    array_push($tags, $row["TAGNAME"]);
+                    array_push($tags, removeSpace($row["TAGNAME"]));
                 }
             }
 
             OCILogoff($db_conn);
 
-            // Render Recipe
+            // RENDER RECIPE
+
+            // Title
             echo "<h3 class='cookbook-section-header'>$title</h3>";
 
             echo "<div>";
+            
+            // Cuisine
             echo "<b>Cuisine: </b>$cuisine<br>";
+
+            // Difficulty
             echo "<b>Difficulty: </b>$difficulty<br>";
             
+            // Cooking Time
             if (!empty($time)) {
                 echo "<b>Cooking Time (in minutes): </b>$time<br>";
             }
 
+            // Ingredients
             echo "<br><h4 class='cookbook-section-header'>Ingredients</h4>";
             foreach ($ingredients as $ingredient => $quantity) {
-                echo "$quantity $ingredient<br>";
+                $ingId = "ingredient-" . replaceSpaceWithDash($ingredient);
+                echo "<span id='$ingId' class='ingredient-text' onClick='onIngredientClick(\"$ingredient\")'>$quantity $ingredient</span><br>";
             }
 
+            // Ingredients Modal
+            echo "<div id='ingredient-modal-background' class='hide'><div id='ingredient-modal'>";
             foreach ($ingredientInfo as $ingredient => $info) {
+                $ingTitle = ucwords($ingredient);
                 $description = $info["description"];
                 $facts = $info["facts"];
-                echo "<b>$ingredient</b>: $description ~ $facts<br>";
+                $ingId = "info-" . replaceSpaceWithDash($ingredient);
+                echo "<div id='$ingId' class='ingredient-info'>";
+                echo "<h4>$ingTitle</h4>";
+                if (!empty($description)) {
+                    echo "<b>Description:</b> $description<br>";
+                }
+                if (!empty($facts)) {
+                    echo "<b>Nutritional Facts:</b> $facts<br>";
+                }
+                echo "</div>";
             }
+            echo "<button class='ingredient-close' type='button' onClick='onIngredientClose()'>Close</button>";
+            echo "</div></div>";
 
+            // Instructions
             echo "<br><h4 class='cookbook-section-header'>Instructions</h4>";
             foreach ($steps as $i=>$step) {
                 $stepNum = $i + 1;
                 echo "$stepNum. $step<br>";
             }
 
+            // Tags
             if (!empty($tags)) {
                 echo "<br>";
                 foreach ($tags as $tag) {
