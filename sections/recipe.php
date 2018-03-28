@@ -19,10 +19,20 @@
 
         if ($db_conn) {
 
-            // TODO: add bookmarking button
+            $userEmail = $_COOKIE["userEmail"];
+
+            // Bookmark State
+            $bookmarkState = "unbookmarked";
+            $queryBookmark = "SELECT RID FROM BOOKMARKS WHERE EMAIL = '$userEmail' AND RID = '$rid'";
+            $resultBookmark = executePlainSQL($queryBookmark);
+            while ($row = OCI_Fetch_Array($resultBookmark, OCI_BOTH)) {
+                if (array_key_exists("RID", $row)) {
+                    $bookmarkState = "bookmarked";
+                }
+            }
     
             // Recipe Title, Cuisine, Difficulty, and Cooking Time
-            $query ="SELECT RECIPETITLE, CUISINE, DIFFICULTY, COOKINGTIME FROM RECIPE WHERE RID = '$rid'";
+            $query = "SELECT RECIPETITLE, CUISINE, DIFFICULTY, COOKINGTIME FROM RECIPE WHERE RID = '$rid'";
             $result = executePlainSQL($query);
             while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                 if (array_key_exists("RECIPETITLE", $row)) {
@@ -121,11 +131,11 @@
 
             // RENDER RECIPE
 
-            // Title
+            // Title and Bookmark Icon
             echo "<form id='bookmark-form' method='post' action='recipe.php'>
                 <h3 class='cookbook-section-header'>
                     $title
-                    <span class='glyphicon glyphicon-bookmark bookmark-icon unbookmarked' onClick='bookmarkClicked()' name='bookmarkToggle'></span>
+                    <span class='glyphicon glyphicon-bookmark bookmark-icon $bookmarkState' onClick='bookmarkClicked()' name='bookmarkToggle'></span>
                 </h3>
             </form>";
 

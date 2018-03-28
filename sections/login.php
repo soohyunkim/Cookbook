@@ -39,6 +39,7 @@ if ($db_conn) {
 
         if ($row) {
             setcookie("userEmail", $email);
+            setcookie("loggedIn", true);
             header("location: search.php");
         } else {
             echo "wrong password or username";

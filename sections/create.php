@@ -83,7 +83,7 @@
 
         <!-- Submit Button -->
         <div class="cookbook-create-section">
-            <button type="submit" onClick="submitForm()" name="uploadRecipe">Upload Recipe</button>
+            <button type="submit" onClick="submitRecipeForm()" name="uploadRecipe">Upload Recipe</button>
         </div>
 
     </form>
