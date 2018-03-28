@@ -31,37 +31,38 @@ if ($db_conn) {
 
     $userEmail = $_COOKIE['userEmail'];
 
-    if (array_key_exists('uploadCookbook', $_POST)) {
-        $cookbookInfo = array(
-            ":cookbookTitle" => $_POST['cookbookTitle'],
-            ":description" => $_POST['cookbookDescription'],
-            ":cid" => uniqid(),
-            ":email" => $userEmail
-        );
-        $alltuples = array(
-            $cookbookInfo
-        );
-        executeBoundSQL("INSERT INTO MANAGEDCOOKBOOK VALUES (:cookbookTitle, :description, :cid, :email)", $alltuples);
-
-        OCICommit($db_conn);
-    }
 
     if ($userEmail != null) {
-      $query = "SELECT COOKBOOKTITLE, DESCRIPTION, CID FROM MANAGEDCOOKBOOK WHERE EMAIL = '" . $userEmail . "'";
-      $result=  executePlainSQL($query);
-      echo "<p>View my cookbooks here: </p>";
-      while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-          echo "<div class='result'>";
-          if (array_key_exists("COOKBOOKTITLE", $row) && array_key_exists("CID", $row)) {
-              $cid = $row["CID"];
-              $title = $row["COOKBOOKTITLE"];
-              echo "<a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $title . "</a>";
-          } else {
-              echo "<p>You have no cookbooks.</p>";
-          }
-      }
-      OCILogoff($db_conn);
-  }
+        if (array_key_exists('uploadCookbook', $_POST)) {
+            $cookbookInfo = array(
+                ":cookbookTitle" => $_POST['cookbookTitle'],
+                ":description" => $_POST['cookbookDescription'],
+                ":cid" => uniqid(),
+                ":email" => $userEmail
+            );
+            $alltuples = array(
+                $cookbookInfo
+            );
+            executeBoundSQL("INSERT INTO MANAGEDCOOKBOOK VALUES (:cookbookTitle, :description, :cid, :email)", $alltuples);
+
+            OCICommit($db_conn);
+        } else {
+            echo "<p>You have no cookbooks.</p>";
+        }
+
+        $query = "SELECT COOKBOOKTITLE, DESCRIPTION, CID FROM MANAGEDCOOKBOOK WHERE EMAIL = '" . $userEmail . "'";
+        $result=  executePlainSQL($query);
+        echo "<p>View my cookbooks here: </p>";
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<div class='result'>";
+            if (array_key_exists("COOKBOOKTITLE", $row) && array_key_exists("CID", $row)) {
+                $cid = $row["CID"];
+                $title = $row["COOKBOOKTITLE"];
+                echo "<a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $title . "</a>";
+            } 
+        }
+        OCILogoff($db_conn);
+    }
 } else {
   echo "cannot connect";
   $e = OCI_Error(); // For OCILogon errors pass no handle
