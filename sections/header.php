@@ -3,7 +3,7 @@ if (!$_COOKIE['userEmail']) {
     header("location: ../index.php");
     exit;
 } else if ($_COOKIE['userType'] == 'admin') {
-    header("location: ../admin/admin.php");
+    header("location: ../admin/adminHeader.php");
     exit;
 }
 ?>
