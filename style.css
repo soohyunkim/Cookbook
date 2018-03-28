@@ -218,7 +218,9 @@ button.login-button,
 button.logout-button,
 button.bookmark-icon,
 div.cookbook-create-section button:active,
-div.cookbook-create-section button:focus {
+div.cookbook-create-section button:focus,
+div.cookbook-search-section button:active,
+div.cookbook-search-section button:focus {
   outline: 0;
   border-width: 0;
 }
