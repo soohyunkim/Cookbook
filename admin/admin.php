@@ -3,6 +3,7 @@ if ($_COOKIE['userType'] !== 'admin') {
     echo "You do not have permission to view this page.";
     exit;
 }
+
 ?>
 <html>
 <form id="logout-form" action="../sections/logout.php">
