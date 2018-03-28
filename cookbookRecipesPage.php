@@ -10,7 +10,7 @@ if ($db_conn) {
         $cookbookInfoQuery = "SELECT COOKBOOKTITLE, DESCRIPTION 
                               FROM MANAGEDCOOKBOOK 
                               WHERE CID = '" . $cid . "' AND EMAIL = '" . $email . "'";
-        $cookbookRecipeQuery = "SELECT DISTINCT RECIPETITLE, CUISINE, DIFFICULTY, COOKINGTIME
+        $cookbookRecipeQuery = "SELECT DISTINCT RECIPETITLE, CUISINE, DIFFICULTY, COOKINGTIME, RECIPE.RID
                                 FROM RECIPE, CONSISTSOF
                                 WHERE RECIPE.RID = CONSISTSOF.RID 
                                 AND CONSISTSOF.CID = '" . $cid . "' AND CONSISTSOF.EMAIL = '" . $email . "'";
@@ -32,9 +32,9 @@ if ($db_conn) {
         //DISPLAY TITLES
         while ($row = OCI_Fetch_Array($cookbookRecipeResult, OCI_BOTH)) {
             echo "<div class='result'>";
-            if (array_key_exists("RECIPETITLE", $row)) {
-                //TODO: Hyperlink to recipe page based on the CID
-                echo "<p><a href=\"\">" . $row["RECIPETITLE"] . "</a><br>";
+            if (array_key_exists("RID", $row)) {
+                $rid = $row["RID"];
+                echo "<p><a href='sections/recipe.php?rid=".$rid."'>" . $row["RECIPETITLE"] . "</a><br>";
                 echo "Cuisine: " . $row["CUISINE"] . "<br>";
                 echo "Difficulty: " . $row["DIFFICULTY"] . "<br>";
                 echo "Cooking Time: " . $row["COOKINGTIME"] . "</p><br>";
