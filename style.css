@@ -134,7 +134,9 @@ div.cookbook-create-section button {
 }
 
 div.cookbook-create-section input,
-div.cookbook-create-section select {
+div.cookbook-create-section select,
+div.cookbook-search-section input,
+div.cookbook-search-section select, {
   outline: 0;
   margin: 2px 0;
   padding: 0 4px;
@@ -171,4 +173,16 @@ div.cookbook-create-ingredient .ingredient_desc {
 
 div.cookbook-create-step input {
   width: 75%;
+}
+
+.cookbook-search-section .input-group-addon{
+  background: white !important; 
+}
+.cookbook-search-section .form-control{
+box-shadow:0 0 0; 
+border-color:#ccc;
+}
+.cookbook-search-section button{
+  border:0;
+  background:transparent;
 }
