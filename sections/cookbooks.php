@@ -51,7 +51,6 @@ if ($db_conn) {
         $countQuery = "SELECT DISTINCT COUNT(CID) as CIDCOUNT FROM MANAGEDCOOKBOOK WHERE EMAIL = '" . $userEmail . "'";
         $countResult = executePlainSQL($countQuery);
         $countRow = OCI_Fetch_Array($countResult, OCI_BOTH)[0];
-        echo "<p>" . $countRow . "</p>";
         if ($countRow > 0) {
             echo "<p>View my cookbooks here: </p>";
         } else {
