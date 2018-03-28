@@ -42,10 +42,10 @@ require "header.php";
             switch ($searchBy) {
                 //searches are NOT case sensitive
                 case "title":
-                    $query = "SELECT RECIPETITLE, RID FROM RECIPE WHERE UPPER(RECIPETITLE) LIKE UPPER('%" . $searchText . "%')";
+                    $query = "SELECT RECIPETITLE, RID FROM RECIPE WHERE UPPER(RECIPETITLE) LIKE UPPER(q'[%$searchText%]')";
                     break;
                 case "tags":
-                    $query = "SELECT DISTINCT RECIPETITLE, RID FROM RECIPE r, SEARCHABLEBY s WHERE s.RID = r.RID AND UPPER(s.TAGNAME) LIKE UPPER('%" . $searchText . "%')";
+                    $query = "SELECT DISTINCT RECIPETITLE, r.RID FROM RECIPE r, SEARCHABLEBY s WHERE s.RID = r.RID AND UPPER(s.TAGNAME) LIKE UPPER(q'[%$searchText%]')";
                     break;
                 case "cuisine":
                     $query = "SELECT RECIPETITLE, RID FROM RECIPE WHERE UPPER(CUISINE) LIKE UPPER('%" . $searchText . "%')";

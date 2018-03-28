@@ -90,7 +90,7 @@
             foreach ($ingredients as $iName => $qty) {
                 $description = "";
                 $facts = "";
-                $queryInfo = "SELECT DESCRIPTION, NUTRITIONALFACTS FROM INGREDIENT WHERE INAME = '$iName'";
+                $queryInfo = "SELECT DESCRIPTION, NUTRITIONALFACTS FROM INGREDIENT WHERE INAME = q'[$iName]'";
                 $resultInfo = executePlainSQL($queryInfo);
                 while ($row = OCI_Fetch_Array($resultInfo, OCI_BOTH)) {
                     if (array_key_exists("DESCRIPTION", $row)) {
