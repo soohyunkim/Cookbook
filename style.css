@@ -233,13 +233,19 @@ div.cookbook-create-step input {
 }
 
 .cookbook-search-section .input-group-addon{
-  background: white !important; 
+  background: #ED6347 !important; 
+  border-color: #ED6347;
 }
+
+.cookbook-search-section .input-group-addon .glyphicon-search{
+  color: white;
+}
+
 .cookbook-search-section .form-control{
 box-shadow:0 0 0; 
 border-color:#ccc;
 }
 .cookbook-search-section button{
-  border:0;
-  background:transparent;
+  border: 0;
+  background: transparent;
 }
