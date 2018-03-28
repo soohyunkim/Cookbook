@@ -1,6 +1,7 @@
 <?php
 require "header.php";
 ?>
+<script src="../javascript/createCookbook.js"></script>
 
 <h3 class="cookbook-section-header">Cookbooks</h3>
 <p>Enter title and description to create your cookbook:</p>
@@ -18,7 +19,7 @@ require "header.php";
     </div>
     <!-- Submit Button -->
     <div class="cookbook-create-section">
-        <button type="submit" onClick="submitForm()" name="uploadRecipe">Create Cookbook</button>
+        <button type="submit" onClick="submitCookbookForm()" name="uploadRecipe">Create Cookbook</button>
     </div>
 </form>
 <p>Manage organized lists of recipes in your own custom cookbooks.</p>
