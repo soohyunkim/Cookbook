@@ -118,6 +118,9 @@ div.login-field-wrap label {
 /* Recipe Page */
 h3.cookbook-section-header .bookmark-icon {
   font-size: 18px;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 h3.cookbook-section-header .bookmark-icon.unbookmarked {
@@ -213,6 +216,7 @@ div.cookbook-search-section select, {
 button.ingredient-close,
 button.login-button,
 button.logout-button,
+button.bookmark-icon,
 div.cookbook-create-section button:active,
 div.cookbook-create-section button:focus {
   outline: 0;
