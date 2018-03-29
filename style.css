@@ -149,6 +149,15 @@ h3.cookbook-section-header .bookmark-icon.bookmarked {
   margin-bottom: 0 !important;
 }
 
+.remove-cb-recipe-form {
+  margin: 0;
+}
+
+.remove-cb-recipe-form button {
+  padding: 2px;
+  vertical-align: baseline;
+}
+
 div.recipe-tag {
     display: inline-block;
     border: 1px solid #cccccc;
@@ -232,11 +241,17 @@ div.cookbook-search-section select {
     padding: 0 4px;
 }
 
+div.cookbook-search-section input {
+  margin-top: 0;
+}
+
 button.ingredient-close,
 button.login-button,
 button.logout-button,
 button.bookmark-icon,
 button.add-to-cookbook-button,
+.remove-cb-recipe-form button:active,
+.remove-cb-recipe-form button:focus,
 div.cookbook-create-section button:active,
 div.cookbook-create-section button:focus,
 div.cookbook-search-section button:active,

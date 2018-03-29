@@ -12,14 +12,10 @@
             // check if recipe exists in cookbook already
             $query = "SELECT RID FROM CONSISTSOF WHERE EMAIL = '$userEmail' AND CID = '$cid' AND RID = '$rid'";
             $result = executePlainSQL($query);
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                if (array_key_exists("RID", $row)) {
-                    $alreadyAdded = true;
-                }
-            }
 
-            // add to cookbook if recipe isn't in the cookbook yet
-            if (empty($alreadyAdded)) {
+            // if there's no rows, the recipe doesn't exist in the cookbook
+            $row = OCI_Fetch_Array($result, OCI_BOTH);
+            if (!$row) {
                 $queryAdd = "INSERT INTO ConsistsOf(email, cid, rid) VALUES ('$userEmail', '$cid', '$rid')";
                 executePlainSQL($queryAdd);
             }

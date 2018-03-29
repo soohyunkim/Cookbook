@@ -36,6 +36,10 @@ function setActiveTab(page) {
       menuEl = document.getElementById("menu-manage-ingredients");
       menuEl.classList.add("active");
       break;
+    case "editIngredient":
+      menuEl = document.getElementById("menu-manage-ingredients");
+      menuEl.classList.add("active");
+      break;
     default:
       break;
   }
