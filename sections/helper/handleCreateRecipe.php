@@ -17,8 +17,9 @@
 
             executePlainSQL("INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('$recipeId', q'[$recipeTitle]', '$cuisineType', $difficulty, " . ($cookingTime == '' ? 'NULL' : $cookingTime) . ")");
 
-            foreach ($ingredients as $index => $ingredient) {
-                if ($ingredient) {
+            foreach ($ingredients as $index => $ingredientRaw) {
+                if ($ingredientRaw) {
+                    $ingredient = strtolower($ingredientRaw);
                     $result = executePlainSQL("SELECT * FROM INGREDIENT WHERE INAME = q'[$ingredient]'");
                     $row = OCI_Fetch_Array($result, OCI_BOTH);
                     if (!is_null($row)) {
