@@ -5,7 +5,7 @@
     <h3 class="cookbook-section-header">Create a New Recipe</h3>
     <p>Upload a new recipe to the database to share it with other users.</p>
 
-    <form id="cookbook-create-form" method="post" onSubmit=" return validateRecipeForm();" action="helper/handleCreateRecipe.php">
+    <form id="cookbook-create-form" method="post" onSubmit="return validateRecipeForm();" action="helper/handleCreateRecipe.php">
 
         <!-- Recipe Name -->
         <div class="cookbook-create-section">
