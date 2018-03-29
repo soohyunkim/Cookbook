@@ -16,8 +16,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     stepsDiv = document.getElementById("cookbook-create-steps");
     tagsDiv = document.getElementById("cookbook-create-tags");
     titleInput = document.getElementById("cookbook-create-title");
-    firstIngredient = document.getElementById("ingr-1");
-    firstStep = document.getElementById("step-1");
+
+    firstIngredient = ingredientsDiv.children[0].children[1];
+    firstStep = stepsDiv.children[0].children[1];
 });
 
 function addIngredientField() {

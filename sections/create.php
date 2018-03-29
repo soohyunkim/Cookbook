@@ -68,7 +68,7 @@
             <div id="cookbook-create-steps">
                 <div class="cookbook-create-step">
                     <label>Step 1:</label>
-                    <input type="text" id="step-1" name="instruction[]">
+                    <input type="text" name="instruction[]">
                 </div>
             </div>
             <button type="button" onClick="addStepField()">Add Step</button>
@@ -83,7 +83,7 @@
 
         <!-- Submit Button -->
         <div class="cookbook-create-section">
-            <button type="submit" onClick="submitRecipeForm()" name="uploadRecipe">Upload Recipe</button>
+            <button type="button" onClick="submitRecipeForm()" name="uploadRecipe">Upload Recipe</button>
         </div>
 
     </form>
