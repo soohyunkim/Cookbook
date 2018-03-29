@@ -118,16 +118,27 @@ if ($db_conn) {
                     $filteredResult = executePlainSQL($filteredQuery);
                     $filteredValue = OCI_Fetch_Array($filteredResult, OCI_BOTH)[0];
 
+                    // Really what I want to do is WHERE cookbook has a minAverageDifficulty and get its title
                     $filteredTitleQuery = "select mc2.cookbookTitle
                             from (" . $filteredQuery . "), managedcookbook mc2, consistsof co2
-                            where mc2.email = co2.EMAIL AND mc2.cid = co2.cid
-                            AND minAverageDifficulty= $filteredValue";
+                            where mc2.email = co2.EMAIL AND mc2.cid = co2.cid";
                     $filteredTitleResult = executePlainSQL($filteredTitleQuery);
                     $filteredTitle = OCI_Fetch_Array($filteredTitleResult, OCI_BOTH)[0];
-                    echo "<div class='container'>";
-                    echo "<a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $filteredTitle . "</a>";
-                    echo $filteredValue;
-                    echo "</div>";
+
+                    // IDK IF THIS IS NECESSARY 
+                    $filteredCIDQuery = "select mc2.cid
+                            from (" . $filteredQuery . "), managedcookbook mc2, consistsof co2
+                            where mc2.email = co2.EMAIL AND mc2.cid = co2.cid
+                            and mc2.email = '" . $userEmail . "'";
+                    $filteredCIDResult = executePlainSQL($filteredCIDQuery);
+                    $filteredCID = OCI_Fetch_Array($filteredCIDResult, OCI_BOTH)[0];
+
+                    if ($filteredCID = $cid && $title = $filteredTitle) {
+                        echo "<div class='container'>";
+                        echo "<a href='cookbookrecipespage.php?cid=" . $filteredCID . "'>" . $filteredTitle . "</a>";
+                        echo $filteredValue;
+                        echo "</div>";
+                    }
                 }
             }
         } else if ($difficultySelected == 'max') {
@@ -147,24 +158,33 @@ if ($db_conn) {
                             group by mc1.cid";
                     $avgResult = executePlainSQL($avgQuery);
                     $avg = OCI_Fetch_Array($avgResult, OCI_BOTH)[0];
-                    $filteredQuery = "select MAX(avgDifficulty) as minAverageDifficulty
+                    $filteredQuery = "select MAX(avgDifficulty) as maxAverageDifficulty
                             from (" . $avgQuery . "), managedcookbook mc2, consistsof co2
                             where mc2.email = co2.EMAIL";
                     $filteredResult = executePlainSQL($filteredQuery);
                     $filteredValue = OCI_Fetch_Array($filteredResult, OCI_BOTH)[0];
+
                     $filteredTitleQuery = "select mc2.cookbookTitle
                             from (" . $filteredQuery . "), managedcookbook mc2, consistsof co2
-                            where mc2.email = co2.EMAIL AND mc2.cid = co2.cid
-                            AND minAverageDifficulty= $filteredValue";
+                            where mc2.email = co2.EMAIL AND mc2.cid = co2.cid";
                     $filteredTitleResult = executePlainSQL($filteredTitleQuery);
                     $filteredTitle = OCI_Fetch_Array($filteredTitleResult, OCI_BOTH)[0];
-                    echo "<div class='container'>";
-                    echo "<a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $filteredTitle . "</a>";
-                    echo $filteredValue;
-                    echo "</div>";
+
+                    $filteredCIDQuery = "select mc2.cid
+                            from (" . $filteredQuery . "), managedcookbook mc2, consistsof co2
+                            where mc2.email = co2.EMAIL AND mc2.cid = co2.cid
+                            and mc2.email = '" . $userEmail . "'";
+                    $filteredCIDResult = executePlainSQL($filteredCIDQuery);
+                    $filteredCID = OCI_Fetch_Array($filteredCIDResult, OCI_BOTH)[0];
+
+                    if ($filteredCID = $cid && $title = $filteredTitle) {
+                        echo "<div class='container'>";
+                        echo "<a href='cookbookrecipespage.php?cid=" . $filteredCID . "'>" . $filteredTitle . "</a>";
+                        echo $filteredValue;
+                        echo "</div>";
+                    }
                 }
             }
-        }
         OCILogoff($db_conn);
     }
 } else {
