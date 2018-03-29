@@ -88,6 +88,10 @@ div.cookbook-tab div.cookbook-tab-content:not(.active) {
   display: none;
 }
 
+div.cookbook-admin-section {
+  margin: 16px 0;
+}
+
 h3.cookbook-section-header,
 h4.cookbook-section-header {
   text-align: left;
@@ -97,6 +101,17 @@ h4.cookbook-section-header {
 button {
   outline: 0;
   border-width: 0;
+  color: #FFFFFF;
+  background-color: #07BEB8;
+  padding: 4px 8px;
+  margin: 4px 0 8px;
+  border-width: 0;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+button.delete-button {
+  margin-top: 8px;
 }
 
 #logout-form {
@@ -108,11 +123,32 @@ button.logout-button {
   left: 50%;
   transform: translateX(-50%);
   margin-top: 12px !important;
-  color: #FFFFFF;
-  background-color: #07BEB8;
-  padding: 4px 8px;
-  margin: 4px 0 8px;
-  border-width: 0;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
+}
+
+td,
+tr.header-row div.table-cells {
+  padding: 4px;
+  position: relative;
+}
+
+tr.header-row th {
+  text-align: center;
+}
+
+input[type=checkbox] {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+select {
+    outline: 0;
+    margin: 2px 0;
+    padding: 0 4px;
+}
+
+select.add-user-type {
+  width: 75px;
 }

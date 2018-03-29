@@ -52,7 +52,7 @@ if ($db_conn) {
                 header("location: search.php");
                 exit;
             } else if ($userType === 'admin') {
-                header("location: ../admin/adminHeader.php");
+                header("location: ../admin/manageUsers.php");
                 exit;
             } else {
                 echo "user type error:" . $userType . ".";
