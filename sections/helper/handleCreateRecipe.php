@@ -17,12 +17,13 @@
 
             executePlainSQL("INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('$recipeId', q'[$recipeTitle]', '$cuisineType', $difficulty, " . ($cookingTime == '' ? 'NULL' : $cookingTime) . ")");
 
-            foreach ($ingredients as $index => $ingredient) {
-                if ($ingredient) {
+            foreach ($ingredients as $index => $ingredientRaw) {
+                if ($ingredientRaw) {
+                    $ingredient = strtolower($ingredientRaw);
                     $result = executePlainSQL("SELECT * FROM INGREDIENT WHERE INAME = q'[$ingredient]'");
                     $row = OCI_Fetch_Array($result, OCI_BOTH);
                     if (!is_null($row)) {
-                        executePlainSQL("INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES (q'[$ingredient]', NULL, NULL, NULL)");
+                        executePlainSQL("INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES (q'[$ingredient]', NULL, NULL)");
                     }
                     executePlainSQL("INSERT INTO Uses(rid, iName, quantity) VALUES ('$recipeId', q'[$ingredient]', q'[$quantities[$index]]')");
                 }
