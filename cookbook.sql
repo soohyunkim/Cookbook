@@ -11,7 +11,6 @@ DROP TABLE Ingredient;
 
 CREATE TABLE Users (
   email    CHAR(50),
-  uName    CHAR(50),
   password CHAR(20),
   type     CHAR(20),
   PRIMARY KEY (email)
@@ -52,7 +51,6 @@ CREATE TABLE Ingredient (
   iName            CHAR(50),
   description      CHAR(500),
   nutritionalFacts CHAR(500),
-  calories INT,
   PRIMARY KEY (iName)
 );
 
@@ -78,7 +76,7 @@ CREATE TABLE ConsistsOf (
   cid   CHAR(20),
   rid   CHAR(20),
   PRIMARY KEY (email, cid, rid),
-  FOREIGN KEY (email, cid) REFERENCES ManagedCookbook (email, cid),
+  FOREIGN KEY (email, cid) REFERENCES ManagedCookbook (email, cid) ON DELETE CASCADE ,
   FOREIGN KEY (rid) REFERENCES Recipe (rid)
 );
 
@@ -86,16 +84,16 @@ CREATE TABLE Bookmarks (
   email CHAR(50),
   rid   CHAR(20),
   PRIMARY KEY (email, rid),
-  FOREIGN KEY (email) REFERENCES Users (email),
+  FOREIGN KEY (email) REFERENCES Users (email) ON DELETE CASCADE ,
   FOREIGN KEY (rid) REFERENCES Recipe (rid)
 );
 
-INSERT INTO Users (email, uName, password, type) VALUES ('alice123@sample.com', 'Alice', '12345678', 'normal');
-INSERT INTO Users (email, uName, password, type) VALUES ('ben010@sample.com', 'Ben', '1231323', 'normal');
-INSERT INTO Users (email, uName, password, type) VALUES ('chris.99@sample.com', 'Chris', 'asdfjkl', 'normal');
-INSERT INTO Users (email, uName, password, type) VALUES ('david.k@sample.com', 'David', '123abc', 'normal');
-INSERT INTO Users (email, uName, password, type) VALUES ('emily604@sample.com', 'Emily', '123123123112313', 'normal');
-INSERT INTO Users (email, uName, password, type) VALUES ('admin@sample.com', 'Administrator', '12345678', 'admin');
+INSERT INTO Users (email, password, type) VALUES ('alice123@sample.com', '12345678', 'normal');
+INSERT INTO Users (email, password, type) VALUES ('ben010@sample.com', '1231323', 'normal');
+INSERT INTO Users (email, password, type) VALUES ('chris.99@sample.com', 'asdfjkl', 'normal');
+INSERT INTO Users (email, password, type) VALUES ('david.k@sample.com', '123abc', 'normal');
+INSERT INTO Users (email, password, type) VALUES ('emily604@sample.com', '123123123112313', 'normal');
+INSERT INTO Users (email, password, type) VALUES ('admin@sample.com', '12345678', 'admin');
 
 INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('1', 'Simple Macaroni and Cheese', 'American', 2, 30);
 INSERT INTO Recipe (rid, recipeTitle, cuisine, difficulty, cookingTime) VALUES ('2', 'Good Old Fashioned Pancakes', 'American', 1, 20);
@@ -130,33 +128,33 @@ INSERT INTO ManagedCookbook(cookbookTitle, description, cid, email) VALUES ('Din
 INSERT INTO ManagedCookbook(cookbookTitle, description, cid, email) VALUES ('Pasta Ideas', 'New pasta recipes to try', '1', 'chris.99@sample.com');
 INSERT INTO ManagedCookbook(cookbookTitle, description, cid, email) VALUES ('My Favourite Appies', 'Favourite Appetizers', '1', 'david.k@sample.com');
 
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('elbow macaroni', 'type of pasta noodle', 'good source of carbohydrates', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('butter', 'dairy product containing up to 80% butterfat', 'contains more than 400 different fatty acids', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('flour', 'powder made from grinding raw grains', 'whole wheat is healthier', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('salt', 'salty, used for seasoning', 'source of sodium', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('pepper', 'used alongside salt for seasoning', null, 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('milk', 'white liquid', 'good source of calcium', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('cheddar cheese', 'yellow cheese', 'source of calcium and protein', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('baking powder', 'chemical leavening agent', null, 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('sugar', 'sweet, less powdery than salt or flour; may be white or brown', 'brown sugar is healthier', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('egg', 'comes in a shell, consists of the yolk and the white part', 'high in protein', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('pork', 'pig meat', 'source of protein', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('ginger', 'used as spice', null, 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('green onion', 'long and green, doesn''t look like regular onions', null, 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('soy sauce', 'thin black liquid sauce used for seasoning', 'source of sodium', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('sesame oil', 'oil made from sesame seeds', null, 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('cabbage', 'green vegetable', null, 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('wonton skin', 'used in dumplings', null, 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('beef', 'cow meat, used in steak', 'source of protein', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('garlic', 'beware of bad breath', 'source of vitamin b6', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('sesame seeds', null, null, 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('black pepper', 'seasoning', null, 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('avocado', 'popular green fruit with a big brown seed in the centre', 'source of potassium', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('lime juice', 'juice made from limes', 'source of vitamin c', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('onion', 'a vegetable that makes you cry', 'source of biotin', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('cilantro', 'a leafy vegetable', 'source of dietary fibre', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('tomato', 'red fruit, often mistaken as a vegetable', 'source of vitamin c', 100);
-INSERT INTO Ingredient(iName, description, nutritionalFacts, calories) VALUES ('cayenne pepper', null, null, 100);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('elbow macaroni', 'type of pasta noodle', 'good source of carbohydrates');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('butter', 'dairy product containing up to 80% butterfat', 'contains more than 400 different fatty acids');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('flour', 'powder made from grinding raw grains', 'whole wheat is healthier');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('salt', 'salty, used for seasoning', 'source of sodium');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('pepper', 'used alongside salt for seasoning', null);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('milk', 'white liquid', 'good source of calcium');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('cheddar cheese', 'yellow cheese', 'source of calcium and protein');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('baking powder', 'chemical leavening agent', null);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('sugar', 'sweet, less powdery than salt or flour; may be white or brown', 'brown sugar is healthier');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('egg', 'comes in a shell, consists of the yolk and the white part', 'high in protein');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('pork', 'pig meat', 'source of protein');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('ginger', 'used as spice', null);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('green onion', 'long and green, doesn''t look like regular onions', null);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('soy sauce', 'thin black liquid sauce used for seasoning', 'source of sodium');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('sesame oil', 'oil made from sesame seeds', null);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('cabbage', 'green vegetable', null);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('wonton skin', 'used in dumplings', null);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('beef', 'cow meat, used in steak', 'source of protein');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('garlic', 'beware of bad breath', 'source of vitamin b6');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('sesame seeds', null, null);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('black pepper', 'seasoning', null);
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('avocado', 'popular green fruit with a big brown seed in the centre', 'source of potassium');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('lime juice', 'juice made from limes', 'source of vitamin c');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('onion', 'a vegetable that makes you cry', 'source of biotin');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('cilantro', 'a leafy vegetable', 'source of dietary fibre');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('tomato', 'red fruit, often mistaken as a vegetable', 'source of vitamin c');
+INSERT INTO Ingredient(iName, description, nutritionalFacts) VALUES ('cayenne pepper', null, null);
 
 INSERT INTO SearchableBy(tagName, rid) VALUES ('pasta', '1');
 INSERT INTO SearchableBy(tagName, rid) VALUES ('mac and cheese', '1');
@@ -168,7 +166,7 @@ INSERT INTO SearchableBy(tagName, rid) VALUES ('bulgogi', '4');
 INSERT INTO SearchableBy(tagName, rid) VALUES ('guacamole', '5');
 INSERT INTO SearchableBy(tagName, rid) VALUES ('dip', '5');
 
-INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'elbow macaroni', '100g');
+INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'elbow macaroni','100g');
 INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'butter', '5 tbsp');
 INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'flour', '250mL');
 INSERT INTO Uses(rid, iName, quantity) VALUES('1', 'salt', 'pinch of');

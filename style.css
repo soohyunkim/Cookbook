@@ -272,3 +272,6 @@ div.cookbook-create-step input {
   border: 0;
   background: transparent;
 }
+.table-cells{
+  text-align: center;
+}

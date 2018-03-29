@@ -8,8 +8,8 @@ if ($_COOKIE['userType'] !== 'admin') {
 <html>
 <head>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../style.css">
     <script src="../javascript/tabs.js"></script>
 </head>
@@ -26,11 +26,11 @@ if ($_COOKIE['userType'] !== 'admin') {
 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 cookbook-tab-menu">
     <div class="list-group">
         <a href="manageRecipes.php" id="menu-manage-recipes" class="list-group-item text-center">
-            <h4 class="glyphicon glyphicon-list-alt"></h4>
+            <h4 class="glyphicon glyphicon-cutlery"></h4>
             <br/>Manage Recipes
         </a>
         <a href="manageIngredients.php" id="menu-manage-ingredients" class="list-group-item text-center">
-            <h4 class="glyphicon glyphicon-th-list"></h4>
+            <h4 class="glyphicon glyphicon-apple"></h4>
             <br/>Manage Ingredients
         </a>
         <a href="manageUsers.php" id="menu-manage-users" class="list-group-item text-center">
