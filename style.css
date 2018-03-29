@@ -1,216 +1,221 @@
 h1, h2, h3, h4, h5, h6 {
-  text-align: center;
+    text-align: center;
 }
 
-div.cookbook-title{
-  margin-top: 60px;
+div.cookbook-title {
+    margin-top: 60px;
 }
 
-div.cookbook-tab-container{
-  z-index: 10;
-  background-color: #ffffff;
-  padding: 0 !important;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  border:1px solid #ffffff;
-  margin: 50px 100px 0;
-  background-clip: padding-box;
+div.cookbook-tab-container {
+    z-index: 10;
+    background-color: #ffffff;
+    padding: 0 !important;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    border: 1px solid #ffffff;
+    margin: 50px 100px 0;
+    background-clip: padding-box;
 }
 
 /* Less Margins for Smaller Screens */
 @media screen and (max-width: 992px) {
-  div.cookbook-tab-container {
-    margin: 0 20px;
-  }
+    div.cookbook-tab-container {
+        margin: 0 20px;
+    }
 }
 
-div.cookbook-tab-menu{
-  padding-top: 0px;
-  padding-left: 0;
-  padding-right: 0;
-  padding-bottom: 0;
-}
-div.cookbook-tab-menu div.list-group{
-  margin-bottom: 50px;
-}
-div.cookbook-tab-menu div.list-group>a .glyphicon,
-div.cookbook-tab-menu div.list-group>a .fa {
-  color: #ED6347;
-}
-div.cookbook-tab-menu div.list-group>a:first-child{
-  border-top-right-radius: 0;
-  -moz-border-top-right-radius: 0;
-}
-div.cookbook-tab-menu div.list-group>a:last-child{
-  border-bottom-right-radius: 0;
-  -moz-border-bottom-right-radius: 0;
-}
-div.cookbook-tab-menu div.list-group>a.active,
-div.cookbook-tab-menu div.list-group>a.active .glyphicon,
-div.cookbook-tab-menu div.list-group>a.active .fa{
-  background-color: #ED6347;
-  background-image: #ED6347;
-  color: #ffffff;
+div.cookbook-tab-menu {
+    padding-top: 0px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
 }
 
-div.cookbook-tab-menu div.list-group>a.active,
-div.cookbook-tab-menu div.list-group>a.active:hover,
-div.cookbook-tab-menu div.list-group>a.active:focus {
-  border-color: #ED6347;
+div.cookbook-tab-menu div.list-group {
+    margin-bottom: 50px;
 }
 
-div.cookbook-tab-menu div.list-group>a.active:after{
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  margin-top: -13px;
-  border-left: 0;
-  border-bottom: 13px solid transparent;
-  border-top: 13px solid transparent;
-  border-left: 10px solid #ED6347;
+div.cookbook-tab-menu div.list-group > a .glyphicon,
+div.cookbook-tab-menu div.list-group > a .fa {
+    color: #ED6347;
 }
 
-div.cookbook-tab-content{
-  background-color: #ffffff;
-  border: 1px solid #eeeeee;
-  padding: 10px 20px;
-  height: 60vh;
-  overflow-y: scroll;
-  position: relative;
+div.cookbook-tab-menu div.list-group > a:first-child {
+    border-top-right-radius: 0;
+    -moz-border-top-right-radius: 0;
 }
 
-div.cookbook-tab div.cookbook-tab-content:not(.active){
-  display: none;
+div.cookbook-tab-menu div.list-group > a:last-child {
+    border-bottom-right-radius: 0;
+    -moz-border-bottom-right-radius: 0;
+}
+
+div.cookbook-tab-menu div.list-group > a.active,
+div.cookbook-tab-menu div.list-group > a.active .glyphicon,
+div.cookbook-tab-menu div.list-group > a.active .fa {
+    background-color: #ED6347;
+    background-image: #ED6347;
+    color: #ffffff;
+}
+
+div.cookbook-tab-menu div.list-group > a.active,
+div.cookbook-tab-menu div.list-group > a.active:hover,
+div.cookbook-tab-menu div.list-group > a.active:focus {
+    border-color: #ED6347;
+}
+
+div.cookbook-tab-menu div.list-group > a.active:after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    margin-top: -13px;
+    border-left: 0;
+    border-bottom: 13px solid transparent;
+    border-top: 13px solid transparent;
+    border-left: 10px solid #ED6347;
+}
+
+div.cookbook-tab-content {
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+    padding: 10px 20px;
+    height: 60vh;
+    overflow-y: scroll;
+    position: relative;
+}
+
+div.cookbook-tab div.cookbook-tab-content:not(.active) {
+    display: none;
 }
 
 #logout-form {
-  position: relative;
+    position: relative;
 }
 
 button.logout-button {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 12px !important;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 12px !important;
 }
 
 h3.cookbook-section-header,
 h4.cookbook-section-header {
-  text-align: left;
-  margin-top: 4px;
+    text-align: left;
+    margin-top: 4px;
 }
 
 /* Login Page */
-h3.login-header{
-  text-align: left;
+h3.login-header {
+    text-align: left;
 }
 
 div.login-field-wrap {
-  padding: 2px 0;
+    padding: 2px 0;
 }
 
 div.login-field-wrap label {
-  min-width: 70px;
-  display: inline-block;
+    min-width: 70px;
+    display: inline-block;
 }
 
 /* Recipe Page */
 h3.cookbook-section-header .bookmark-icon {
-  font-size: 18px;
-  background: none;
-  border: none;
-  padding: 0;
+    font-size: 18px;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 h3.cookbook-section-header .bookmark-icon.unbookmarked {
-  color: #FFFFFF;
-  text-shadow: -1px 0 #ED6347, 0 1px #ED6347, 1px 0 #ED6347, 0 -1px #ED6347;
+    color: #FFFFFF;
+    text-shadow: -1px 0 #ED6347, 0 1px #ED6347, 1px 0 #ED6347, 0 -1px #ED6347;
 }
 
 h3.cookbook-section-header .bookmark-icon.bookmarked {
-  color: #ED6347;
+    color: #ED6347;
 }
 
 div.recipe-tag {
-  display: inline-block;
-  border: 1px solid #cccccc;
-  margin-right: 4px;
-  padding: 2px 8px;
-  border-radius: 100px;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    margin-right: 4px;
+    padding: 2px 8px;
+    border-radius: 100px;
 }
 
 span.ingredient-text:hover {
-  color: #ED6347;
-  font-weight: 500;
-  cursor: pointer;
+    color: #ED6347;
+    font-weight: 500;
+    cursor: pointer;
 }
 
 div#ingredient-modal-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(256, 256, 256, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(256, 256, 256, 0.8);
 }
 
 div#ingredient-modal {
-  width: 50%;
-  margin: 12% auto 0;
-  padding: 8px 24px 56px;
-  background-color: #FFFFFF;
-  border: 2px solid #ED6347;
-  border-radius: 8px;
-  position: relative;
+    width: 50%;
+    margin: 12% auto 0;
+    padding: 8px 24px 56px;
+    background-color: #FFFFFF;
+    border: 2px solid #ED6347;
+    border-radius: 8px;
+    position: relative;
 }
 
 div.ingredient-info:not(.active) {
-  display: none;
+    display: none;
 }
 
 button.ingredient-close {
-  color: #ffffff;
-  background-color: #ED6347;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 4px 8px;
-  margin: 16px 0 8px;
-  border-width: 0;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
+    color: #ffffff;
+    background-color: #ED6347;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    margin: 16px 0 8px;
+    border-width: 0;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
 }
 
 /* Create Section and Form */
 
 form#cookbook-create-form {
-  padding-top: 2px;
+    padding-top: 2px;
 }
 
 div.cookbook-create-section {
-  margin: 8px 0;
+    margin: 8px 0;
 }
 
 button.login-button,
 button.logout-button,
 div.cookbook-create-section button {
-  color: #ffffff;
-  background-color: #ED6347;
-  padding: 4px 8px;
-  margin: 4px 0 8px;
-  border-width: 0;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
+    color: #ffffff;
+    background-color: #ED6347;
+    padding: 4px 8px;
+    margin: 4px 0 8px;
+    border-width: 0;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
 }
 
 div.cookbook-create-section input,
 div.cookbook-create-section select,
 div.cookbook-search-section input,
 div.cookbook-search-section select {
-  outline: 0;
-  margin: 2px 0;
-  padding: 0 4px;
+    outline: 0;
+    margin: 2px 0;
+    padding: 0 4px;
 }
 
 button.ingredient-close,
@@ -221,57 +226,63 @@ div.cookbook-create-section button:active,
 div.cookbook-create-section button:focus,
 div.cookbook-search-section button:active,
 div.cookbook-search-section button:focus {
-  outline: 0;
-  border-width: 0;
+    outline: 0;
+    border-width: 0;
 }
 
 input#cookbook-create-title {
-  width: 50%;
+    width: 50%;
 }
 
 input#cookbook-create-description {
-  width: 80%;
+    width: 80%;
 }
 
 div.cookbook-create-time input {
-  width: 50px;
+    width: 50px;
 }
 
 select.cookbook-create-cuisine,
 select.cookbook-create-difficulty {
-  width: 110px;
+    width: 110px;
 }
 
 div.cookbook-create-ingredient .ingredient_qty {
-  width: 20%;
-  max-width: 100px;
+    width: 20%;
+    max-width: 100px;
 }
 
 div.cookbook-create-ingredient .ingredient_desc {
-  width: 30%;
+    width: 30%;
 }
 
 div.cookbook-create-step input {
-  width: 75%;
+    width: 75%;
 }
 
-.cookbook-search-section .input-group-addon{
-  background: #ED6347 !important;
-  border-color: #ED6347;
+.cookbook-search-section .input-group-addon {
+    background: #ED6347 !important;
+    border-color: #ED6347;
 }
 
-.cookbook-search-section .input-group-addon .glyphicon-search{
-  color: white;
+.cookbook-search-section .input-group-addon .glyphicon-search {
+    color: white;
 }
 
-.cookbook-search-section .form-control{
-  box-shadow:0 0 0;
-  border-color:#ccc;
+.cookbook-search-section .form-control {
+    box-shadow: 0 0 0;
+    border-color: #ccc;
 }
-.cookbook-search-section button{
-  border: 0;
-  background: transparent;
+
+.cookbook-search-section button {
+    border: 0;
+    background: transparent;
 }
-.table-cells{
-  text-align: center;
+
+div.filterby {
+    width: 30%;
+}
+
+#search-container {
+    width: 50%;
 }

@@ -7,7 +7,6 @@ var firstIngredient;
 var firstStep;
 
 var stepNum = 1;
-var ingredientNum;
 
 var tag = "<input type='text' class='tag' name='tags[]'>";
 
@@ -16,13 +15,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     stepsDiv = document.getElementById("cookbook-create-steps");
     tagsDiv = document.getElementById("cookbook-create-tags");
     titleInput = document.getElementById("cookbook-create-title");
-    firstIngredient = document.getElementById("ingr-1");
-    firstStep = document.getElementById("step-1");
+
+    firstIngredient = ingredientsDiv.children[0].children[1];
+    firstStep = stepsDiv.children[0].children[1];
 });
 
 function addIngredientField() {
     var quantity = "<input type='text' class='ingredient_qty' name='quantity[]' placeholder='Quantity'>";
-    ingredientNum = quantity;
     var ingredient = "<input type='text' class='ingredient_desc' name='ingredient[]' placeholder='Ingredient'>";
     var newIngredient = document.createElement("div");
     newIngredient.setAttribute("class", "cookbook-create-ingredient");
@@ -49,6 +48,7 @@ function addTagField() {
 
 function validateIngredients() {
     var ingredients = ingredientsDiv.children;
+    var ingredientNum = ingredients.length;
 
     for (var i = 0; i < ingredientNum; i++) {
         var quantity = ingredients[i].children[0].value;
@@ -64,16 +64,17 @@ function validateIngredients() {
     return true;
 }
 
-function submitRecipeForm() {
+function validateRecipeForm() {
     if (titleInput.value === "") {
         alert("Please enter a title for the recipe.");
     } else if (firstIngredient.value === "") {
         alert("Please enter at least one ingredient (i.e. first ingredient cannot be empty)");
-    } else if (firstStep.value === "") {
-        alert("Please enter at least one step (i.e. Step 1 cannot be empty)");
     } else if (!validateIngredients()) {
         alert("Please make sure all ingredients have both a quantity and an ingredient.")
+    } else if (firstStep.value === "") {
+        alert("Please enter at least one step (i.e. Step 1 cannot be empty)");
     } else {
-        document.forms["cookbook-create-form"].submit();
+        return true;
     }
+    return false;
 }

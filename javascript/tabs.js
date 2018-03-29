@@ -24,6 +24,18 @@ function setActiveTab(page) {
       menuEl = document.getElementById("menu-create");
       menuEl.classList.add("active");
       break;
+    case "manageUsers":
+      menuEl = document.getElementById("menu-manage-users");
+      menuEl.classList.add("active");
+      break;
+    case "manageRecipes":
+      menuEl = document.getElementById("menu-manage-recipes");
+      menuEl.classList.add("active");
+      break;
+    case "manageIngredients":
+      menuEl = document.getElementById("menu-manage-ingredients");
+      menuEl.classList.add("active");
+      break;
     default:
       break;
   }
