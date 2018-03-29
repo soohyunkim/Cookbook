@@ -31,7 +31,6 @@ if ($db_conn) {
 
     $userEmail = $_COOKIE['userEmail'];
 
-
     if ($userEmail != null) {
         if (array_key_exists('uploadCookbook', $_POST)) {
             $cookbookInfo = array(
@@ -51,34 +50,97 @@ if ($db_conn) {
         $countQuery = "SELECT DISTINCT COUNT(CID) as CIDCOUNT FROM MANAGEDCOOKBOOK WHERE EMAIL = '" . $userEmail . "'";
         $countResult = executePlainSQL($countQuery);
         $countRow = OCI_Fetch_Array($countResult, OCI_BOTH)[0];
+
         if ($countRow > 0) {
             echo "<h3 class='cookbook-section-header'>My cookbooks: </h3>";
             echo "<div class='container'>";
-            echo "<form>Filter by Difficulty: ";
+            echo "<form action='cookbooks.php' method='post'>Filter by Difficulty: ";
             echo "<label class='radio-inline'><input type='radio' name='difficulty' value='uncategorized'> Uncategorized </label>";
-            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='maximum'> Maximum </label>";
-            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='minimum'> Minimum </label>";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='max'> Maximum </label>";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='min'> Minimum </label>";
+            echo "<input type='submit' value='submit'>";
             echo "</form>";
             echo "</div>";
             
         } else {
-            echo "<p>You don't have any cookbooks :( Create one!</p>";
+            echo "<p>You don't have any cookbooks :(. Create one!</p>";
         }
 
         $query = "SELECT COOKBOOKTITLE, DESCRIPTION, CID FROM MANAGEDCOOKBOOK WHERE EMAIL = '" . $userEmail . "'";
         $result=  executePlainSQL($query);
+
+        $difficultySelected = $_POST["difficulty"]; //Want to grab the difficulty sorting, and run the query accordingly
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<div class='result'>";
-            if (array_key_exists("COOKBOOKTITLE", $row) && array_key_exists("CID", $row)) {
-                $cid = $row["CID"];
-                $title = $row["COOKBOOKTITLE"];
-                echo "<div class='container'>";
-                echo "<a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $title . "</a>";
-                echo "</div>";
-            } 
-        }
+                if ($difficultySelected == 'uncategorized') {
+                    if (array_key_exists("COOKBOOKTITLE", $row) && array_key_exists("CID", $row)) {
+                        $cid = $row["CID"];
+                        $title = $row["COOKBOOKTITLE"];
+                        $recipeCountQuery = "select count(consistsOf.rid) from consistsOf, managedcookbook 
+                        where managedcookbook.CID = '" . $cid . "' and consistsOf.cid = '" . $cid . "' 
+                        AND consistsOf.email = managedcookbook.email 
+                        AND consistsOf.email ='" . $userEmail ."' 
+                        group by consistsOf.cid";
+                        $recipeCountResult = executePlainSQL($recipeCountQuery);
+                        $recipeCountValue = OCI_Fetch_Array($recipeCountResult, OCI_BOTH)[0];
+                        echo "<div class='container'>";
+                            echo "<a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $title . "</a>";
+                        if ($recipeCountValue > 0) {
+                            $avgQuery = "select avg(r1.DIFFICULTY) as avgDifficulty
+                            from MANAGEDCOOKBOOK mc1, RECIPE r1, CONSISTSOF co1
+                            where mc1.CID = '" . $cid . "' and co1.cid = '" . $cid . "' and r1.rid = co1.rid 
+                                and mc1.email = '" . $userEmail ."' and co1.email = '" . $userEmail . "'
+                            group by mc1.cid";
+                            $avgResult = executePlainSQL($avgQuery);
+                            $avgValue = OCI_Fetch_Array($avgResult, OCI_BOTH)[0];
+                            echo $avgValue;
+                        }
+                        echo "</div>";
+                    }
+                } else if ($difficultySelected == 'min') {
+                    if (array_key_exists("COOKBOOKTITLE", $row) && array_key_exists("CID", $row)) {
+                        $cid = $row["CID"];
+                        $title = $row["COOKBOOKTITLE"];
+                        $recipeCount = "select count(consistsOf.rid) from consistsOf, managedcookbook 
+                        where consistsOf.cid = managedcookbook.cid 
+                        AND consistsOf.email = managedcookbook.email 
+                        AND consistsOf.email ='" . $userEmail ."' 
+                        group by consistsOf.cid";
+                        if ($recipeCount > 0) {
+                            $avgQuery = "select avg(r1.DIFFICULTY) as avgDifficulty
+                            from MANAGEDCOOKBOOK mc1, RECIPE r1, CONSISTSOF co1
+                            where mc1.CID = '" . $cid . "' and co1.cid = '" . $cid . "' and r1.rid = co1.rid 
+                                and mc1.email = '" . $userEmail ."' and co1.email = '" . $userEmail . "'
+                            group by mc1.cid";
+                            $filteredQuery = "select MIN(avgDifficulty) as minAverageDifficulty
+                                    from (" . $avgQuery . "), managedcookbook mc2, consistsof co2
+                                    where mc2.email = co2.EMAIL";
+                            $filteredResult = executePlainSQL($filteredQuery);
+                            $filteredValue = OCI_Fetch_Array($filteredResult, OCI_BOTH)[0];
+    
+                            $filteredTitleQuery = "select mc2.cookbookTitle as cookbookTitle
+                                    from (" . $avgQuery . "), managedcookbook mc2, consistsof co2
+                                    where mc2.email = co2.EMAIL AND mc2.cid = co2.cid AND avgDifficulty = $filteredValue";
+                            $filteredTitleResult = executePlainSQL($filteredTitleQuery);
+                            $filteredTitle = OCI_Fetch_Array($filteredTitleResult, OCI_BOTH)[0];
+    
+                            $filteredTitleCIDQuery = "select mc2.cid
+                                    from (" . $avgQuery . "), managedcookbook mc2, consistsof co2
+                                    where mc2.email = co2.EMAIL AND mc2.cid = co2.cid AND avgDifficulty = $filteredValue";
+                            // $filteredTitleCIDResult = executePlainSQL($filteredTitleCIDQuery);
+                            // $filteredTitleCID = OCI_Fetch_Array($filteredTitleCIDResult, OCI_BOTH)[0];
+                            // if ($filteredTitleCID == $cid) {
+                                echo "<div class='container'>";
+                                echo "<a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $filteredTitle . "</a>";
+                                echo $filteredValue;
+                                echo "</div>";
+                        }
+                        // }
+                }
+            }
         OCILogoff($db_conn);
     }
+}
 } else {
   echo "cannot connect";
   $e = OCI_Error(); // For OCILogon errors pass no handle
