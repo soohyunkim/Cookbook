@@ -59,7 +59,7 @@ CREATE TABLE SearchableBy (
   rid     CHAR(20),
   PRIMARY KEY (tagName, rid),
   FOREIGN KEY (tagName) REFERENCES Tag (tagName),
-  FOREIGN KEY (rid) REFERENCES Recipe (rid)
+  FOREIGN KEY (rid) REFERENCES Recipe (rid) ON DELETE CASCADE
 );
 
 CREATE TABLE Uses (
@@ -67,7 +67,7 @@ CREATE TABLE Uses (
   iName CHAR(50),
   quantity CHAR(20),
   PRIMARY KEY (rid, iName),
-  FOREIGN KEY (rid) REFERENCES Recipe (rid),
+  FOREIGN KEY (rid) REFERENCES Recipe (rid) ON DELETE CASCADE,
   FOREIGN KEY (iName) REFERENCES Ingredient (iName)
 );
 
@@ -77,7 +77,7 @@ CREATE TABLE ConsistsOf (
   rid   CHAR(20),
   PRIMARY KEY (email, cid, rid),
   FOREIGN KEY (email, cid) REFERENCES ManagedCookbook (email, cid) ON DELETE CASCADE ,
-  FOREIGN KEY (rid) REFERENCES Recipe (rid)
+  FOREIGN KEY (rid) REFERENCES Recipe (rid) ON DELETE CASCADE
 );
 
 CREATE TABLE Bookmarks (
@@ -85,7 +85,7 @@ CREATE TABLE Bookmarks (
   rid   CHAR(20),
   PRIMARY KEY (email, rid),
   FOREIGN KEY (email) REFERENCES Users (email) ON DELETE CASCADE ,
-  FOREIGN KEY (rid) REFERENCES Recipe (rid)
+  FOREIGN KEY (rid) REFERENCES Recipe (rid) ON DELETE CASCADE
 );
 
 INSERT INTO Users (email, password, type) VALUES ('alice123@sample.com', '12345678', 'normal');
