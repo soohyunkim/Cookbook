@@ -25,28 +25,30 @@ if (empty($cid)) {
             while ($row = OCI_Fetch_Array($cookbookInfoResult, OCI_BOTH)) {
                 echo "<div class='result'>";
                 if (array_key_exists("COOKBOOKTITLE", $row) && array_key_exists("DESCRIPTION", $row)) {
-                    echo "<h2>" . $row["COOKBOOKTITLE"] . "</h2>";
-                    echo "<p>Description: " . $row["DESCRIPTION"] . "</p><br>";
+                    echo "<h2>" . trim($row["COOKBOOKTITLE"], " ") . "</h2>";
+                    echo "<p>Description: " . trim($row["DESCRIPTION"], " ") . "</p>";
                 } else {
                     echo "<p>There are no cookbooks that match your search.</p>";
                 }
+                echo "</div>";
             }
             //DISPLAY TITLES
             while ($row = OCI_Fetch_Array($cookbookRecipeResult, OCI_BOTH)) {
                 echo "<div class='result'>";
                 if (array_key_exists("RID", $row)) {
-                    $rid = $row["RID"];
+                    $rid = trim($row["RID"], " ");
 //                    echo "<p><a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a>";
-                    echo "<form id='delete-recipe-from-cookbook-form' method='post' action='helper/handleDeleteCookbookRecipe.php'>
-                            <p>
-                            <a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a> 
-                            <button type='submit' class='btn' name='deleteRecipeSubmit'>x</button>
-                            </p>
+                    echo "<form id='delete-recipe-from-cookbook-form' class='remove-cb-recipe-form' method='post' action='helper/handleDeleteCookbookRecipe.php'>
+                            <div>
+                                <a href='recipe.php?rid=" . $rid . "'>" . trim($row["RECIPETITLE"], " ") . "</a> 
+                                <button type='submit' class='btn remove-cb-recipe-button' name='deleteRecipeSubmit'>x</button>
+                            </div>
                             <input type='hidden' name='rid' value='$rid'>
                             <input type='hidden' name='cid' value='$cid'></form>";
                 } else {
                     echo "<p>There are no recipes that match your search.</p>";
                 }
+                echo "</div>";
             }
 
             OCILogoff($db_conn);

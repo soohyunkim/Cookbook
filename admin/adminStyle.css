@@ -143,7 +143,7 @@ input[type=checkbox] {
   transform: translate(-50%, -50%);
 }
 
-select {
+select, input {
     outline: 0;
     margin: 2px 0;
     padding: 0 4px;
@@ -151,4 +151,16 @@ select {
 
 select.add-user-type {
   width: 75px;
+}
+
+div.edit-ingredient-section {
+  margin-top: 16px;
+}
+
+div.edit-ingredient-section label {
+  margin-bottom: 0;
+}
+
+button#save-ingredient-button {
+  margin-top: 16px;
 }
