@@ -2,7 +2,38 @@
 require "adminHeader.php";
 include_once '../connection.php';
 ?>
-<form name="deleteUsers" action="deleteUsers.php" method="post" OnSubmit="return onDelete();">
+<script src="../javascript/addUser.js"></script>
+
+<form id="add-user-form" method="post" onSubmit=" return validateUserForm();" action="helper/handleAddUser.php">
+
+    <!-- User Email -->
+    <div class="add-user-section">
+        <label>User Email:</label>
+        <input type="text" id="add-user-email" name="userEmail">
+    </div>
+
+    <!-- User Password -->
+    <div class="add-user-section">
+        <label>User Password:</label>
+        <input type="text" id="add-user-password" name="userPassword">
+    </div>
+
+    <!-- User Type -->
+    <div class="add-user-section">
+        <label>User Type:</label>
+        <select class="add-user-type" name="userType">
+            <option value="normal">Normal</option>
+            <option value="admin">Admin</option>
+        </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="add-user-section">
+        <button type="submit" name="addUser">Add User</button>
+    </div>
+</form>
+
+<form name="deleteUsers" action="helper/deleteUsers.php" method="post" OnSubmit="return onDelete();">
 
     <?php
     if ($db_conn) {
@@ -56,16 +87,6 @@ include_once '../connection.php';
     <input type="submit" name="deleteButton" value="Delete">
 </form>
 <?php
-if (array_key_exists('addUser', $_POST)) {
-
-    $userEmail = $_POST['userEmail'];
-    $userPassword = $_POST['userPassword'];
-    $userType = $_POST['userType'];
-
-    executePlainSQL("INSERT INTO Users (email, password, type) VALUES ('$userEmail', '$userPassword', '$userType')");
-
-    OCICommit($db_conn);
-}
 OCILogoff($db_conn);
 } else {
     echo "cannot connect";
