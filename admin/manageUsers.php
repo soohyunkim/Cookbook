@@ -39,11 +39,6 @@ include_once '../connection.php';
     if ($db_conn) {
     $query = "SELECT * FROM USERS";
     $result = executePlainSQL($query);
-    $row = OCI_Fetch_Array($result, OCI_BOTH);
-    if (!$row) {
-        echo "No users exist";
-        exit;
-    }
     ?>
     <table width="600" border="1">
         <tr>
@@ -94,5 +89,3 @@ OCILogoff($db_conn);
     echo htmlentities($e['message']);
 }
 require "../sections/footer.php"; ?>
-?>
-
