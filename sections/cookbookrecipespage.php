@@ -28,7 +28,7 @@ if (empty($cid)) {
                     echo "<h2>" . $row["COOKBOOKTITLE"] . "</h2>";
                     echo "<p>Description: " . $row["DESCRIPTION"] . "</p><br>";
                 } else {
-                    echo "<p>There are no recipes that match your search.</p>";
+                    echo "<p>There are no cookbooks that match your search.</p>";
                 }
             }
             //DISPLAY TITLES
@@ -36,11 +36,19 @@ if (empty($cid)) {
                 echo "<div class='result'>";
                 if (array_key_exists("RID", $row)) {
                     $rid = $row["RID"];
-                    echo "<p><a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a><br>";
+//                    echo "<p><a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a>";
+                    echo "<form id='delete-recipe-from-cookbook-form' method='post' action='helper/handleDeleteCookbookRecipe.php'>
+                            <p>
+                            <a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a> 
+                            <button type='submit' class='btn' name='deleteRecipeSubmit'>x</button>
+                            </p>
+                            <input type='hidden' name='rid' value='$rid'>
+                            <input type='hidden' name='cid' value='$cid'></form>";
                 } else {
                     echo "<p>There are no recipes that match your search.</p>";
                 }
             }
+
             OCILogoff($db_conn);
         }
     } else {
