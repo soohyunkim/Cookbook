@@ -30,11 +30,22 @@
                     $bookmarkState = "bookmarked";
                 }
             }
+
+            // List of Current User's Cookbooks
+            $queryCookbooks = "SELECT CID, COOKBOOKTITLE FROM MANAGEDCOOKBOOK WHERE EMAIL ='$userEmail'";
+            $resultCookbooks = executePlainSQL($queryCookbooks);
+            $cookbooks = [];
+            while ($row = OCI_Fetch_Array($resultCookbooks, OCI_BOTH)) {
+                if (array_key_exists("CID", $row) && array_key_exists("COOKBOOKTITLE", $row)) {
+                    $cookbook = array(removeSpace($row["CID"])=>removeSpace($row["COOKBOOKTITLE"]));
+                    $cookbooks = $cookbooks + $cookbook;
+                }
+            }
     
             // Recipe Title, Cuisine, Difficulty, and Cooking Time
-            $query = "SELECT RECIPETITLE, CUISINE, DIFFICULTY, COOKINGTIME FROM RECIPE WHERE RID = '$rid'";
-            $result = executePlainSQL($query);
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            $queryRecipe = "SELECT RECIPETITLE, CUISINE, DIFFICULTY, COOKINGTIME FROM RECIPE WHERE RID = '$rid'";
+            $resultRecipe = executePlainSQL($queryRecipe);
+            while ($row = OCI_Fetch_Array($resultRecipe, OCI_BOTH)) {
                 if (array_key_exists("RECIPETITLE", $row)) {
                     $title = removeSpace($row["RECIPETITLE"]);
 
@@ -78,7 +89,7 @@
             while ($row = OCI_Fetch_Array($resultIngredients, OCI_BOTH)) {
                 if (array_key_exists("INAME", $row) && array_key_exists("QUANTITY", $row)) {
                     $ingredient = array(removeSpace($row["INAME"])=>removeSpace($row["QUANTITY"]));
-                    $ingredients = array_merge($ingredients, $ingredient);
+                    $ingredients = $ingredients + $ingredient;
                 }
             }
 
@@ -102,7 +113,7 @@
                     "description"=>$description,
                     "facts"=>$facts
                 ));
-                $ingredientInfo = array_merge($ingredientInfo, $ingredient);
+                $ingredientInfo = $ingredientInfo + $ingredient;
             }
 
             // Steps
@@ -138,6 +149,23 @@
                 <input type='hidden' name='rid' value='$rid'>
                 <input type='hidden' name='bookmarkState' value='$bookmarkState'>
             </form>";
+
+            // Add to Cookbook Section
+            echo
+                "<div>
+                    <form id='add-to-cookbook-form' method='post' action='helper/handleAddToCookbook.php'>
+                        <label>Add to Cookbook:</label>
+                        <select class='cookbook-dropdown' name='cookbookDropdown'>
+                            <option disabled selected value=''>Select Cookbook...</option>";
+            foreach ($cookbooks as $cid => $ctitle) {
+                echo "<option value=$cid>$ctitle</option>";
+            }
+            echo
+                        "</select>
+                        <input type='hidden' name='rid' value='$rid'>
+                        <button type='submit' class='add-to-cookbook-button' name='addToCookbook'>Add
+                    </form>
+                </div>";
 
             echo "<div>";
             
