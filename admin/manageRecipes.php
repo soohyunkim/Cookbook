@@ -2,6 +2,9 @@
 require "adminHeader.php";
 include_once '../connection.php';
 ?>
+<h3 class="cookbook-section-header">Manage Recipes</h3>
+<div class="cookbook-admin-section">
+    <h4 class="cookbook-section-header">Remove an Existing Recipe</h4>
     <form name="deleteRecipe" action="helper/deleteRecipes.php" method="post" OnSubmit="return onDelete();">
 <?php
 if ($db_conn) {
@@ -14,7 +17,7 @@ if ($db_conn) {
     }
     ?>
     <table width="600" border="1">
-        <tr>
+        <tr class="header-row">
             <th>
                 <div class="table-cells">Recipe ID</div>
             </th>
@@ -48,8 +51,9 @@ if ($db_conn) {
     <?php
     OCICommit($db_conn);
     ?>
-    <input type="submit" name="deleteButton" value="Delete">
+    <button type="submit" class="delete-button" name="deleteButton">Delete Selected</button>
     </form>
+    </div>
     <?php
     OCILogoff($db_conn);
 } else {

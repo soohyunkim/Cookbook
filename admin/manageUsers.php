@@ -38,7 +38,7 @@
 </div>
 
 <div class="cookbook-admin-section">
-    <h4 class="cookbook-section-header">Remove an Existent User</h4>
+    <h4 class="cookbook-section-header">Remove an Existing User</h4>
     <form name="deleteUsers" action="helper/deleteUsers.php" method="post" OnSubmit="return onDelete();">
 
         <?php
