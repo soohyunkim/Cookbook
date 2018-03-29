@@ -79,8 +79,6 @@
                 if (array_key_exists("INAME", $row) && array_key_exists("QUANTITY", $row)) {
                     $ingredient = array(removeSpace($row["INAME"])=>removeSpace($row["QUANTITY"]));
                     $ingredients = array_merge($ingredients, $ingredient);
-                } else {
-                    echo "no ingredients";
                 }
             }
 
