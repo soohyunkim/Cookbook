@@ -3,7 +3,7 @@ require "header.php";
 ?>
 <script src="../javascript/createCookbook.js"></script>
 
-<h3 class="cookbook-section-header">Cookbooks</h3>
+<h3 class="cookbook-section-header">Create a cookbook: </h3>
 <p>Enter title and description to create your cookbook:</p>
 <form method="post" action="cookbooks.php">
 
@@ -52,7 +52,15 @@ if ($db_conn) {
         $countResult = executePlainSQL($countQuery);
         $countRow = OCI_Fetch_Array($countResult, OCI_BOTH)[0];
         if ($countRow > 0) {
-            echo "<p>View my cookbooks here: </p>";
+            echo "<h3 class='cookbook-section-header'>My cookbooks: </h3>";
+            echo "<div class='container'>";
+            echo "<form>Filter by Difficulty: ";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='uncategorized'> Uncategorized </label>";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='maximum'> Maximum </label>";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='minimum'> Minimum </label>";
+            echo "</form>";
+            echo "</div>";
+            
         } else {
             echo "<p>You don't have any cookbooks :( Create one!</p>";
         }
@@ -64,7 +72,9 @@ if ($db_conn) {
             if (array_key_exists("COOKBOOKTITLE", $row) && array_key_exists("CID", $row)) {
                 $cid = $row["CID"];
                 $title = $row["COOKBOOKTITLE"];
+                echo "<div class='container'>";
                 echo "<a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $title . "</a>";
+                echo "</div>";
             } 
         }
         OCILogoff($db_conn);
