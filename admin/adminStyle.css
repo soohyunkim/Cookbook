@@ -1,0 +1,118 @@
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+div.cookbook-title {
+  margin-top: 60px;
+}
+
+div.cookbook-tab-container {
+  z-index: 10;
+  background-color: #ffffff;
+  padding: 0 !important;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  border:1px solid #ffffff;
+  margin: 50px 100px 0;
+  background-clip: padding-box;
+}
+
+/* Less Margins for Smaller Screens */
+@media screen and (max-width: 992px) {
+  div.cookbook-tab-container {
+    margin: 0 20px;
+  }
+}
+
+div.cookbook-tab-menu {
+  padding-top: 0px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+div.cookbook-tab-menu div.list-group {
+  margin-bottom: 50px;
+}
+
+div.cookbook-tab-menu div.list-group>a .glyphicon,
+div.cookbook-tab-menu div.list-group>a .fa {
+  color: #07BEB8;
+}
+
+div.cookbook-tab-menu div.list-group>a:first-child {
+  border-top-right-radius: 0;
+  -moz-border-top-right-radius: 0;
+}
+div.cookbook-tab-menu div.list-group>a:last-child {
+  border-bottom-right-radius: 0;
+  -moz-border-bottom-right-radius: 0;
+}
+
+div.cookbook-tab-menu div.list-group>a.active,
+div.cookbook-tab-menu div.list-group>a.active .glyphicon,
+div.cookbook-tab-menu div.list-group>a.active .fa {
+  background-color: #07BEB8;
+  background-image: #07BEB8;
+  color: #ffffff;
+}
+
+div.cookbook-tab-menu div.list-group>a.active,
+div.cookbook-tab-menu div.list-group>a.active:hover,
+div.cookbook-tab-menu div.list-group>a.active:focus {
+  border-color: #07BEB8;
+}
+
+div.cookbook-tab-menu div.list-group>a.active:after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-top: -13px;
+  border-left: 0;
+  border-bottom: 13px solid transparent;
+  border-top: 13px solid transparent;
+  border-left: 10px solid #07BEB8;
+}
+
+div.cookbook-tab-content {
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+  padding: 10px 20px;
+  height: 60vh;
+  overflow-y: scroll;
+  position: relative;
+}
+
+div.cookbook-tab div.cookbook-tab-content:not(.active) {
+  display: none;
+}
+
+h3.cookbook-section-header,
+h4.cookbook-section-header {
+  text-align: left;
+  margin-top: 4px;
+}
+
+button {
+  outline: 0;
+  border-width: 0;
+}
+
+#logout-form {
+  position: relative;
+}
+
+button.logout-button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 12px !important;
+  color: #FFFFFF;
+  background-color: #07BEB8;
+  padding: 4px 8px;
+  margin: 4px 0 8px;
+  border-width: 0;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+}
