@@ -316,3 +316,17 @@ div.filterby {
 #search-container {
     width: 50%;
 }
+
+h4.ingredient-modal-title {
+    margin-bottom: 0;
+}
+
+div.popular-ingredient {
+    text-align: center;
+    font-style: italic;
+    margin-top: 2px;
+}
+
+div.ingredient-modal-details {
+    margin-top: 12px;
+}
