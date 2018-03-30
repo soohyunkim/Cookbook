@@ -85,10 +85,15 @@ if ($db_conn) {
                     $cid = $row['CID'];
                     $result = executePlainSQL("SELECT COOKBOOKTITLE FROM MANAGEDCOOKBOOK WHERE CID='$cid'");
                     $title = OCI_Fetch_Array($result, OCI_BOTH)[0];
-                    echo "<div class='container'>";
-                    echo "<a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $title . "</a>";
-                    echo $row["AVGDIFFICULTY"];
-                    echo "</div>";
+
+                    echo "<div class='container'>
+                            <form id='delete-cookbook-form' class='remove-cookbook-form' method='post' action='helper/handleDeleteCookbook.php'>
+                                    <a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $title . "</a>&nbsp;" . $row['AVGDIFFICULTY'] . "
+                                    <button type='submit' class='btn remove-cb-recipe-button' name='deleteCookbookSubmit'>x</button>
+                                    <input type='hidden' name='cid' value='$cid'>
+                            </form>
+                        </div>";
+
                 }
                 echo "</div>";
             } else if ($difficultySelected == 'min') {
@@ -109,10 +114,14 @@ if ($db_conn) {
                 $result = executePlainSQL("SELECT COOKBOOKTITLE FROM MANAGEDCOOKBOOK WHERE CID='$minCID'");
                 $minTitle = OCI_Fetch_Array($result, OCI_BOTH)[0];
 
-                echo "<div class='container'>";
-                echo "<a href='cookbookrecipespage.php?cid=" . $minCID . "'>" . $minTitle . "</a>";
-                echo $minValue;
-                echo "</div>";
+                echo "<div class='container'>
+                        <form id='delete-cookbook-min-form' class='remove-cookbook-min-form' method='post' action='helper/handleDeleteCookbook.php'>
+                                <a href='cookbookrecipespage.php?cid=" . $minCID . "'>" . $minTitle . "</a>
+                                &nbsp; $minValue
+                                <button type='submit' class='btn remove-cb-recipe-button' name='deleteCookbookMinSubmit'>x</button>
+                                <input type='hidden' name='minCID' value='$minCID'>
+                        </form>
+                      </div>";
             } else if ($difficultySelected == 'max') {
                 echo "<div class='result'>";
                 $avgQuery = "SELECT mc1.cid AS FIRSTCID, avg(r1.DIFFICULTY) AS avgDifficulty
@@ -131,10 +140,14 @@ if ($db_conn) {
                 $result = executePlainSQL("SELECT COOKBOOKTITLE FROM MANAGEDCOOKBOOK WHERE CID='$maxCID'");
                 $maxTitle = OCI_Fetch_Array($result, OCI_BOTH)[0];
 
-                echo "<div class='container'>";
-                echo "<a href='cookbookrecipespage.php?cid=" . $maxCID . "'>" . $maxTitle . "</a>";
-                echo $maxValue;
-                echo "</div>";
+                echo "<div class='container'>
+                        <form id='delete-cookbook-max-form' class='remove-cookbook-max-form' method='post' action='helper/handleDeleteCookbook.php'>
+                                <a href='cookbookrecipespage.php?cid=" . $maxCID . "'>" . $maxTitle . "</a>
+                                &nbsp; $maxValue
+                                <button type='submit' class='btn remove-cb-recipe-button' name='deleteCookbookMaxSubmit'>x</button>
+                                <input type='hidden' name='maxCID' value='$maxCID'>
+                        </form>
+                      </div>";
             }
             OCILogoff($db_conn);
         }
