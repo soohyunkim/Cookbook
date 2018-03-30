@@ -6,7 +6,7 @@ require "header.php";
 
     <h3 class="cookbook-section-header">Create a cookbook: </h3>
     <p>Enter title and description to create your cookbook:</p>
-    <form id="cookbook-create-form" method="post" action="cookbooks.php">
+    <form id="cookbook-create-form" method="post" action="cookbooks.php" onSubmit="return submitCookbookForm();" >
 
         <!-- Cookbook Title -->
         <div class="cookbook-create-section">
@@ -20,7 +20,7 @@ require "header.php";
         </div>
         <!-- Submit Button -->
         <div class="cookbook-create-section">
-            <button type="submit" onClick="submitCookbookForm()" name="uploadCookbook">Create Cookbook</button>
+            <button type="submit" name="uploadCookbook">Create Cookbook</button>
         </div>
     </form>
 <?php

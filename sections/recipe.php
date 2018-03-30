@@ -99,7 +99,9 @@ require "header.php";
             // Popular ingredient (Division)
             // Select all ingredients which are in all recipes.
             $queryPopularIngredient = "SELECT iName From Ingredient I WHERE NOT EXISTS ((SELECT R.rid FROM Recipe R) MINUS (SELECT U.rid FROM Uses U WHERE U.iName = I.iName))";
-            $resultPopularIngredient = executePlainSQL($queryPopularIngredient)[0];
+            $resultPopularIngredientQuery = executePlainSQL($queryPopularIngredient);
+            $resultPopularIngredient = OCI_Fetch_Array($resultPopularIngredientQuery, OCI_BOTH)[0];
+            $popularIngredient = trim($resultPopularIngredient, " ");
 
             // Ingredient Info
             // ingredientName=>[description, nutritionalFacts]
@@ -206,14 +208,18 @@ require "header.php";
                 $facts = $info["facts"];
                 $ingId = "info-" . replaceSpaceWithDash($ingredient);
                 echo "<div id='$ingId' class='ingredient-info'>";
-                echo "<h4>$ingTitle</h4>";
+                echo "<h4 class='ingredient-modal-title'>$ingTitle</h4>";
+                if ($popularIngredient == $ingredient) {
+                    echo "<div class='popular-ingredient'>Popular Ingredient</div>";
+                }
+                echo "<div class='ingredient-modal-details'>";
                 if (!empty($description)) {
                     echo "<b>Description:</b> $description<br>";
                 }
                 if (!empty($facts)) {
                     echo "<b>Nutritional Facts:</b> $facts<br>";
                 }
-                echo "</div>";
+                echo "</div></div>";
             }
             echo "<button class='ingredient-close' type='button' onClick='onIngredientClose()'>Close</button>";
             echo "</div></div>";
