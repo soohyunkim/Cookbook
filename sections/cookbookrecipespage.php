@@ -38,7 +38,6 @@ if (empty($cid)) {
                 echo "<div class='result'>";
                 if (array_key_exists("RID", $row)) {
                     $rid = trim($row["RID"], " ");
-//                    echo "<p><a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a>";
                     echo "<form id='delete-recipe-from-cookbook-form' class='remove-cb-recipe-form' method='post' action='helper/handleDeleteCookbookRecipe.php'>
                             <div>
                                 <a href='recipe.php?rid=" . $rid . "'>" . trim($row["RECIPETITLE"], " ") . "</a> 
