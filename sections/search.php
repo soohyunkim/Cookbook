@@ -64,20 +64,23 @@ if ($db_conn) {
         }
 
         $result = executePlainSQL($query);
-        if (oci_num_rows($result) > 0) {
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<div class='result'>";
-                if (array_key_exists("RECIPETITLE", $row) && array_key_exists("RID", $row) ) {
-                    $rid = $row["RID"];
-                    echo "<p><a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a></p>";
-                }
-                echo "</div>";
+        $numRows = 0;
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<div class='result'>";
+            if (array_key_exists("RECIPETITLE", $row) && array_key_exists("RID", $row) ) {
+                $rid = $row["RID"];
+                echo "<p><a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a></p>";
             }
-        } else {
+            echo "</div>";
+            $numRows++;
+        }
+
+        if ($numRows == 0) {
             echo "<div class='result'>";
             echo "<p>There are no recipes that match your search.</p>";
             echo "</div>";
         }
+
         OCILogoff($db_conn);
     } else {
         $defaultResult = executePlainSQL($allQuery);
