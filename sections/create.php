@@ -1,5 +1,6 @@
-<?php require "header.php";
+<?php
 require "../normalRedirect.php";
+require "header.php";
 ?>
 
     <script src="../javascript/createRecipe.js"></script>

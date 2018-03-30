@@ -1,6 +1,6 @@
 <?php
-require "adminHeader.php";
 require "../adminRedirect.php";
+require "adminHeader.php";
 include_once '../connection.php';
 ?>
 <script src="../javascript/addUser.js"></script>

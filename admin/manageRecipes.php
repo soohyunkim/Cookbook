@@ -1,6 +1,6 @@
 <?php
-require "adminHeader.php";
 require "../adminRedirect.php";
+require "adminHeader.php";
 include_once '../connection.php';
 ?>
 <h3 class="cookbook-section-header">Manage Recipes</h3>

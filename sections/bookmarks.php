@@ -1,6 +1,6 @@
 <?php
-require "header.php";
 require "../normalRedirect.php";
+require "header.php";
 ?>
 
     <h3 class="cookbook-section-header">Bookmarks</h3>

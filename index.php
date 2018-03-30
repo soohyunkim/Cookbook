@@ -4,7 +4,7 @@ if ($_COOKIE['userEmail'] && $_COOKIE['userType'] == 'normal') {
     header("location: sections/search.php");
     exit;
 } else if ($_COOKIE['userEmail'] && $_COOKIE['userType'] == 'admin') {
-    header("location: admin/adminHeader.php");
+    header("location: admin/manageUsers.php");
     exit;
 }
 ?>

@@ -1,9 +1,3 @@
-<?php
-if ($_COOKIE['userType'] !== 'normal') {
-    echo "You do not have permission to view this page.";
-    exit;
-}
-?>
 <html>
     <head>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
