@@ -1,4 +1,5 @@
 <?php require "header.php";
+require "../normalRedirect.php";
 
 $cid = $_GET["cid"];
 

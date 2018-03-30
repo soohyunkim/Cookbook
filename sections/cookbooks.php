@@ -1,5 +1,6 @@
 <?php
 require "header.php";
+require "../normalRedirect.php";
 ?>
     <script src="../javascript/createCookbook.js"></script>
 

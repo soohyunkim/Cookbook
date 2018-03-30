@@ -1,9 +1,6 @@
 <?php
-if (!$_COOKIE['userEmail']) {
-    header("location: ../index.php");
-    exit;
-} else if ($_COOKIE['userType'] == 'admin') {
-    header("location: ../admin/adminHeader.php");
+if ($_COOKIE['userType'] !== 'normal') {
+    echo "You do not have permission to view this page.";
     exit;
 }
 ?>
