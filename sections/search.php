@@ -62,15 +62,15 @@ if ($db_conn) {
                 $query = "SELECT RECIPETITLE, RID FROM RECIPE WHERE UPPER(CUISINE) LIKE UPPER('%" . $searchText . "%')";
                 break;
         }
+
         $result = executePlainSQL($query);
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<div class='result'>";
-            if (array_key_exists("RECIPETITLE", $row) && array_key_exists("RID", $row)) {
+            if (array_key_exists("RECIPETITLE", $row) && array_key_exists("RID", $row) ) {
                 $rid = $row["RID"];
                 echo "<p><a href='recipe.php?rid=" . $rid . "'>" . $row["RECIPETITLE"] . "</a></p>";
-            } else {
-                echo "<p>There are no recipes that match your search.</p>";
             }
+            echo "</div>";
         }
         OCILogoff($db_conn);
     } else {
@@ -80,9 +80,8 @@ if ($db_conn) {
             if (array_key_exists("RECIPETITLE", $defaultRow) && array_key_exists("RID", $defaultRow)) {
                 $rid = $defaultRow["RID"];
                 echo "<p><a href='recipe.php?rid=" . $rid . "'>" . $defaultRow["RECIPETITLE"] . "</a></p>";
-            } else {
-                echo "<p>There are no recipes that match your search.</p>";
             }
+            echo "</div>";
         }
         OCILogoff($db_conn);
     }
