@@ -58,9 +58,21 @@ if ($db_conn) {
             echo "<form action='cookbooks.php' method='post' id='cookbook-difficulty-form'>";
             echo "<div id='cookbook-difficulty-menu'>";
             echo "<b>Filter by Difficulty:</b>";
-            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='uncategorized' id='difficulty-radio-uncategorized'> Uncategorized </label>";
-            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='max' id='difficulty-radio-max'> Maximum </label>";
-            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='min' id='difficulty-radio-min'> Minimum </label>";
+            echo "<label class='radio-inline'><input type='radio' id='difficulty-radio-uncategorized' name='difficulty'";
+            if (isset($_POST['difficulty']) && $_POST['difficulty']=='uncategorized') {
+                echo "checked='checked'";
+            }
+            echo "value='uncategorized'> Uncategorized </label>";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty'";
+            if (isset($_POST['difficulty']) && $_POST['difficulty']=='max') {
+                echo "checked='checked'";
+            }
+            echo "value='max' id='difficulty-radio-max'> Maximum </label>";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty'";
+            if (isset($_POST['difficulty']) && $_POST['difficulty']=='min') {
+                echo "checked='checked'";
+            }
+            echo "value='min' id='difficulty-radio-min'> Minimum </label>";
             echo "</div>";
             echo "<button type='submit' class='filter-difficulty-button' name='filterSubmit'>Show Cookbooks</button>";
             echo "</form>";
