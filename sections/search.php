@@ -38,11 +38,6 @@ require "header.php";
 include_once '../connection.php';
 if ($db_conn) {
     // hardcoded to get all for now, modify to use LIKE
-    $allQuery = "SELECT DISTINCT RECIPETITLE, r.RID
-                                FROM RECIPE r, SEARCHABLEBY s
-                                WHERE s.RID = r.RID AND UPPER(s.TAGNAME) LIKE UPPER(q'[%$searchText%]')
-                                OR UPPER(RECIPETITLE) LIKE UPPER(q'[%$searchText%]')
-                                 OR UPPER(CUISINE) LIKE UPPER('%" . $searchText . "%')";
     $searchSubmit = $_POST["searchSubmit"];
     if (!is_null($searchSubmit)) {
         $searchText = $_POST["searchText"];
@@ -50,7 +45,11 @@ if ($db_conn) {
         switch ($searchBy) {
             //searches are NOT case sensitive
             case "all":
-                $query = $allQuery;
+                $query = "SELECT DISTINCT RECIPETITLE, r.RID
+                          FROM RECIPE r, SEARCHABLEBY s
+                          WHERE s.RID = r.RID AND UPPER(s.TAGNAME) LIKE UPPER(q'[%$searchText%]')
+                          OR UPPER(RECIPETITLE) LIKE UPPER(q'[%$searchText%]')
+                          OR UPPER(CUISINE) LIKE UPPER('%" . $searchText . "%')";
                 break;
             case "title":
                 $query = "SELECT RECIPETITLE, RID FROM RECIPE WHERE UPPER(RECIPETITLE) LIKE UPPER(q'[%$searchText%]')";
@@ -83,6 +82,8 @@ if ($db_conn) {
 
         OCILogoff($db_conn);
     } else {
+        $allQuery = "SELECT DISTINCT RECIPETITLE, RID
+                     FROM RECIPE";
         $defaultResult = executePlainSQL($allQuery);
         while ($defaultRow = OCI_Fetch_Array($defaultResult, OCI_BOTH)) {
             echo "<div class='result'>";
