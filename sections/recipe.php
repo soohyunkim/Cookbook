@@ -93,6 +93,11 @@
                 }
             }
 
+            // Popular ingredient (Division)
+            // Select all ingredients which are in all recipes.
+            $queryPopularIngredient = "SELECT iName From Ingredient I WHERE NOT EXISTS ((SELECT R.rid FROM Recipe R) MINUS (SELECT U.rid FROM Uses U WHERE U.iName = I.iName))";
+            $resultPopularIngredient = executePlainSQL($queryPopularIngredient)[0];
+
             // Ingredient Info
             // ingredientName=>[description, nutritionalFacts]
             $ingredientInfo = [];
@@ -113,6 +118,9 @@
                     "description"=>$description,
                     "facts"=>$facts
                 ));
+                if ($ingredient == $resultPopularIngredient) {
+                // put very popular ingredient in
+                }
                 $ingredientInfo = $ingredientInfo + $ingredient;
             }
 
