@@ -205,6 +205,8 @@ INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'cilantro', '10g');
 INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'tomato',  '2');
 INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'garlic', '1');
 INSERT INTO Uses(rid, iName, quantity) VALUES('5', 'cayenne pepper', '10g');
+INSERT INTO Uses(rid, iName, quantity) VALUES('3', 'salt', 'pinch of');
+INSERT INTO Uses(rid, iName, quantity) VALUES('4', 'salt', 'pinch of');
 
 INSERT INTO ConsistsOf(email, cid, rid) VALUES ('alice123@sample.com', '1', '3');
 INSERT INTO ConsistsOf(email, cid, rid) VALUES ('alice123@sample.com', '1', '4');

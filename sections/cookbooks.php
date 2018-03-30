@@ -6,7 +6,7 @@ require "../normalRedirect.php";
 
     <h3 class="cookbook-section-header">Create a cookbook: </h3>
     <p>Enter title and description to create your cookbook:</p>
-    <form method="post" action="cookbooks.php">
+    <form id="cookbook-create-form" method="post" action="cookbooks.php">
 
         <!-- Cookbook Title -->
         <div class="cookbook-create-section">
@@ -135,8 +135,8 @@ if ($db_conn) {
                 echo "<a href='cookbookrecipespage.php?cid=" . $maxCID . "'>" . $maxTitle . "</a>";
                 echo $maxValue;
                 echo "</div>";
-                OCILogoff($db_conn);
             }
+            OCILogoff($db_conn);
         }
     } else {
         echo "cannot connect";
