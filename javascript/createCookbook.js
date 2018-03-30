@@ -12,6 +12,7 @@ function submitCookbookForm() {
   } else if (description.value === "") {
       alert("Please enter a description of the cookbook.");
   } else {
-      document.forms["cookbook-create-form"].submit();
+      return true;
   }
+  return false;
 }
