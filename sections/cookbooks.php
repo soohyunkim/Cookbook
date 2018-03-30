@@ -4,8 +4,8 @@ require "header.php";
 ?>
     <script src="../javascript/createCookbook.js"></script>
 
-    <h3 class="cookbook-section-header">Create a cookbook: </h3>
-    <p>Enter title and description to create your cookbook:</p>
+    <h3 class="cookbook-section-header">Create a New Cookbook</h3>
+    <p>Enter both a title and a description to create a new cookbook.</p>
     <form id="cookbook-create-form" method="post" action="cookbooks.php" onSubmit="return submitCookbookForm();" >
 
         <!-- Cookbook Title -->
@@ -53,15 +53,17 @@ if ($db_conn) {
         $countRow = OCI_Fetch_Array($countResult, OCI_BOTH)[0];
 
         if ($countRow > 0) {
-            echo "<h3 class='cookbook-section-header'>My cookbooks: </h3>";
-            echo "<div class='container'>";
-            echo "<form action='cookbooks.php' method='post'>Filter by Difficulty: ";
-            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='uncategorized'> Uncategorized </label>";
-            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='max'> Maximum </label>";
-            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='min'> Minimum </label>";
-            echo "<input type='submit' name='filterSubmit'value='submit'>";
-            echo "</form>";
+            echo "<h3 class='cookbook-section-header'>My Cookbooks</h3>";
+            
+            echo "<form action='cookbooks.php' method='post' id='cookbook-difficulty-form'>";
+            echo "<div id='cookbook-difficulty-menu'>";
+            echo "<b>Filter by Difficulty:</b>";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='uncategorized' id='difficulty-radio-uncategorized'> Uncategorized </label>";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='max' id='difficulty-radio-max'> Maximum </label>";
+            echo "<label class='radio-inline'><input type='radio' name='difficulty' value='min' id='difficulty-radio-min'> Minimum </label>";
             echo "</div>";
+            echo "<button type='submit' class='filter-difficulty-button' name='filterSubmit'>Show Cookbooks</button>";
+            echo "</form>";
 
         } else {
             echo "<p>You don't have any cookbooks :(. Create one!</p>";
@@ -82,18 +84,19 @@ if ($db_conn) {
                             GROUP BY mc1.cid";
                 $avgResult = executePlainSQL($avgQuery);
                 while ($row = OCI_Fetch_Array($avgResult, OCI_BOTH)) {
-                    $cid = $row['CID'];
+                    $cid = trim($row['CID'], " ");
                     $result = executePlainSQL("SELECT COOKBOOKTITLE FROM MANAGEDCOOKBOOK WHERE CID='$cid'");
-                    $title = OCI_Fetch_Array($result, OCI_BOTH)[0];
+                    $title = trim(OCI_Fetch_Array($result, OCI_BOTH)[0], " ");
+                    $avgDifficulty = substr(trim($row['AVGDIFFICULTY'], " "), 0, 3);
 
-                    echo "<div class='container'>
-                            <form id='delete-cookbook-form' class='remove-cookbook-form' method='post' action='helper/handleDeleteCookbook.php'>
-                                    <a href='cookbookrecipespage.php?cid=" . $cid . "'>" . $title . "</a>&nbsp;" . $row['AVGDIFFICULTY'] . "
+                    echo "<div>
+                            <form id='delete-cookbook-form' class='remove-cookbook-form remove-cb-recipe-form' method='post' action='helper/handleDeleteCookbook.php'>
+                                    <a href='cookbookrecipespage.php?cid=$cid'>$title</a>
+                                    <span class='cookbook-avg-difficulty'>(Difficulty: $avgDifficulty)</span>
                                     <button type='submit' class='btn remove-cb-recipe-button' name='deleteCookbookSubmit'>x</button>
                                     <input type='hidden' name='cid' value='$cid'>
                             </form>
                         </div>";
-
                 }
                 echo "</div>";
             } else if ($difficultySelected == 'min') {
@@ -108,16 +111,16 @@ if ($db_conn) {
                 $minQuery = "SELECT * FROM ($avgQuery) WHERE AVGDIFFICULTY = (SELECT MIN(avgDifficulty) AS minAverageDifficulty FROM ($avgQuery), managedcookbook mc2, consistsof co2 WHERE mc2.email = co2.EMAIL)";
                 $minResult = executePlainSQL($minQuery);
                 $minRow = OCI_Fetch_Array($minResult, OCI_BOTH);
-                $minCID = $minRow["FIRSTCID"];
-                $minValue = $minRow["AVGDIFFICULTY"];
+                $minCID = trim($minRow["FIRSTCID"], " ");
+                $minValue = substr(trim($minRow["AVGDIFFICULTY"], " "), 0, 3);
 
                 $result = executePlainSQL("SELECT COOKBOOKTITLE FROM MANAGEDCOOKBOOK WHERE CID='$minCID'");
                 $minTitle = OCI_Fetch_Array($result, OCI_BOTH)[0];
 
-                echo "<div class='container'>
-                        <form id='delete-cookbook-min-form' class='remove-cookbook-min-form' method='post' action='helper/handleDeleteCookbook.php'>
-                                <a href='cookbookrecipespage.php?cid=" . $minCID . "'>" . $minTitle . "</a>
-                                &nbsp; $minValue
+                echo "<div>
+                        <form id='delete-cookbook-min-form' class='remove-cookbook-min-form remove-cb-recipe-form' method='post' action='helper/handleDeleteCookbook.php'>
+                                <a href='cookbookrecipespage.php?cid=$minCID'>$minTitle</a>
+                                <span class='cookbook-avg-difficulty'>(Difficulty: $minValue)</span>
                                 <button type='submit' class='btn remove-cb-recipe-button' name='deleteCookbookMinSubmit'>x</button>
                                 <input type='hidden' name='minCID' value='$minCID'>
                         </form>
@@ -134,16 +137,16 @@ if ($db_conn) {
                 $maxQuery = "SELECT * FROM ($avgQuery) WHERE AVGDIFFICULTY = (SELECT MAX(avgDifficulty) AS maxAverageDifficulty FROM ($avgQuery), managedcookbook mc2, consistsof co2 WHERE mc2.email = co2.EMAIL)";
                 $maxResult = executePlainSQL($maxQuery);
                 $maxRow = OCI_Fetch_Array($maxResult, OCI_BOTH);
-                $maxCID = $maxRow["FIRSTCID"];
-                $maxValue = $maxRow["AVGDIFFICULTY"];
+                $maxCID = trim($maxRow["FIRSTCID"], " ");
+                $maxValue = substr(trim($maxRow["AVGDIFFICULTY"], " "), 0, 3);
 
                 $result = executePlainSQL("SELECT COOKBOOKTITLE FROM MANAGEDCOOKBOOK WHERE CID='$maxCID'");
                 $maxTitle = OCI_Fetch_Array($result, OCI_BOTH)[0];
 
-                echo "<div class='container'>
-                        <form id='delete-cookbook-max-form' class='remove-cookbook-max-form' method='post' action='helper/handleDeleteCookbook.php'>
-                                <a href='cookbookrecipespage.php?cid=" . $maxCID . "'>" . $maxTitle . "</a>
-                                &nbsp; $maxValue
+                echo "<div>
+                        <form id='delete-cookbook-max-form' class='remove-cookbook-max-form remove-cb-recipe-form' method='post' action='helper/handleDeleteCookbook.php'>
+                                <a href='cookbookrecipespage.php?cid=$maxCID'>$maxTitle</a>
+                                <span class='cookbook-avg-difficulty'>(Difficulty: $maxValue)</span>
                                 <button type='submit' class='btn remove-cb-recipe-button' name='deleteCookbookMaxSubmit'>x</button>
                                 <input type='hidden' name='maxCID' value='$maxCID'>
                         </form>

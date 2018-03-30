@@ -220,6 +220,7 @@ div.cookbook-create-section {
 
 button.login-button,
 button.logout-button,
+button.filter-difficulty-button,
 button.add-to-cookbook-button,
 div.cookbook-create-section button {
     color: #ffffff;
@@ -250,6 +251,7 @@ button.login-button,
 button.logout-button,
 button.bookmark-icon,
 button.add-to-cookbook-button,
+button.filter-difficulty-button,
 .remove-cb-recipe-form button:active,
 .remove-cb-recipe-form button:focus,
 div.cookbook-create-section button:active,
@@ -329,4 +331,26 @@ div.popular-ingredient {
 
 div.ingredient-modal-details {
     margin-top: 12px;
+}
+
+div#cookbook-difficulty-menu {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+div#cookbook-difficulty-menu label {
+    margin-left: 10px;
+}
+
+div#cookbook-difficulty-menu input[type=radio] {
+    margin-left: -18px;
+}
+
+form#cookbook-difficulty-form {
+    margin-bottom: 0;
+}
+
+span.cookbook-avg-difficulty {
+    font-size: 12px;
+    color: #888888;
 }
